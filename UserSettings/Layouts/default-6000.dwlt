@@ -69,8 +69,8 @@ MonoBehaviour:
     y: 0
     width: 569
     height: 933
-  m_MinSize: {x: 275, y: 50}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 276, y: 76}
+  m_MaxSize: {x: 4001, y: 4026}
   m_ActualView: {fileID: 15}
   m_Panes:
   - {fileID: 15}
@@ -95,8 +95,8 @@ MonoBehaviour:
     y: 0
     width: 414
     height: 580
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 201, y: 226}
+  m_MaxSize: {x: 4001, y: 4026}
   m_ActualView: {fileID: 16}
   m_Panes:
   - {fileID: 16}
@@ -467,7 +467,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets
+    - Assets/Materials
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -477,16 +477,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets
+  - Assets/Materials
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\white\OneDrive\Desktop\Game Production\FinalProject\Cyberpunk2078
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 24}
-    m_SelectedIDs: 7eb20000
-    m_LastClickedID: 45694
-    m_ExpandedIDs: 000000007eb2000000ca9a3bffffff7f
+    m_SelectedIDs: b0b40000
+    m_LastClickedID: 46256
+    m_ExpandedIDs: 0000000086b2000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -515,7 +515,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000007eb20000
+    m_ExpandedIDs: 0000000086b20000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -661,9 +661,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 22fbffff
-      m_LastClickedID: -1246
-      m_ExpandedIDs: 22fbffff24fbffff
+      m_SelectedIDs: ecfaffff
+      m_LastClickedID: -1300
+      m_ExpandedIDs: 24fbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1225,9 +1225,9 @@ MonoBehaviour:
   m_AudioPlay: 0
   m_DebugDrawModesUseInteractiveLightBakingData: 0
   m_Position:
-    m_Target: {x: -10.668575, y: 5.7798696, z: -7.009511}
+    m_Target: {x: -4.8371077, y: 5.62004, z: -15.620799}
     speed: 2
-    m_Value: {x: -10.668575, y: 5.7798696, z: -7.009511}
+    m_Value: {x: -4.8371077, y: 5.62004, z: -15.620799}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1273,13 +1273,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.06398565, y: -0.8503119, z: 0.10333956, w: -0.5125269}
+    m_Target: {x: -0.08755189, y: -0.6958755, z: 0.08430604, w: -0.7081555}
     speed: 2
-    m_Value: {x: -0.06381502, y: -0.8508724, z: 0.10341023, w: -0.5111264}
+    m_Value: {x: -0.0874035, y: -0.69676286, z: 0.08441618, w: -0.7069343}
   m_Size:
-    m_Target: 5.112269
+    m_Target: 9.221411
     speed: 2
-    m_Value: 4.892123
+    m_Value: 8.824317
   m_Ortho:
     m_Target: 0
     speed: 2
