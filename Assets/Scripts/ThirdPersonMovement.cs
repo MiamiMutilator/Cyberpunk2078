@@ -98,13 +98,15 @@ public class ThirdPersonMovement : MonoBehaviour
         {
             if (Input.GetButtonDown("Jump") && isGrounded)
             {
-                velocity.y = Mathf.Sqrt(jumpHeight * -2 * gravity);
+                rb.linearVelocity = new Vector3(rb.linearVelocity.x, jumpHeight * 3f, rb.linearVelocity.z);
+                //velocity.y = Mathf.Sqrt(jumpHeight * -2 * gravity);
                 Debug.Log("Jumped");
                 jumpNumber++;
             }
             if (Input.GetButtonDown("Jump") && isGrounded == false && jumpNumber != 1)
             {
-                velocity.y = Mathf.Sqrt(jumpHeight * -2 * gravity);
+                rb.linearVelocity = new Vector3(rb.linearVelocity.x, jumpHeight * 3f, rb.linearVelocity.z);
+                //velocity.y = Mathf.Sqrt(jumpHeight * -2 * gravity);
                 Debug.Log("Jumped");
                 jumpNumber++;
 
