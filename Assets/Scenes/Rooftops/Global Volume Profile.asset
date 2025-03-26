@@ -222,7 +222,7 @@ MonoBehaviour:
     m_Value: {x: 0, y: 0}
   bottomAltitude:
     m_OverrideState: 1
-    m_Value: 1674
+    m_Value: 2092
   altitudeRange:
     m_OverrideState: 1
     m_Value: 1716
@@ -402,16 +402,16 @@ MonoBehaviour:
     m_Value: 0.5
   densityMultiplier:
     m_OverrideState: 1
-    m_Value: 0.285
+    m_Value: 0.27
   shapeFactor:
     m_OverrideState: 1
-    m_Value: 0.932
+    m_Value: 0.823
   shapeScale:
     m_OverrideState: 1
     m_Value: 5
   shapeOffset:
     m_OverrideState: 1
-    m_Value: {x: 0.95, y: 0, z: 0.11}
+    m_Value: {x: 0.68, y: 0, z: 0.11}
   erosionFactor:
     m_OverrideState: 1
     m_Value: 0.8
