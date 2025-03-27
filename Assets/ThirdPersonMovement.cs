@@ -25,6 +25,28 @@ public class ThirdPersonMovement : MonoBehaviour
     float turnSmoothVelocity;
     public float turnSmoothTime = 0.1f;
 
+    //health and dodging
+    public int Health = 100;
+    int rngSeed;
+    int rngShoot;
+    int rngSound;
+    public bool isMoving;
+
+    AudioSource audioSource;
+    public AudioClip bulletHit;
+    public AudioClip bulletMiss1;
+    public AudioClip bulletMiss2;
+    public AudioClip bulletMiss3;
+    public AudioClip bulletMiss4;
+    public AudioClip bulletMiss5;
+
+    private void Start()
+    {
+        //health and dodging
+        rngSeed = Random.Range(1, 101);
+        audioSource = GetComponent<AudioSource>();
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -71,6 +93,66 @@ public class ThirdPersonMovement : MonoBehaviour
 
             Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
             controller.Move(moveDir.normalized * speed * Time.deltaTime);
+        }
+
+        //health and dodging
+        {
+
+            if (Input.GetButton("Vertical") && isGrounded == true || Input.GetButton("Horizontal") && isGrounded == true)
+            {
+                isMoving = true;
+            }
+            else
+            {
+                isMoving = false;
+            }
+            if (isGrounded == false)
+            {
+                isMoving = true;
+            }
+
+        }
+    }
+
+    public void Damage(int damage)
+    {
+        if (isMoving == true)
+        {
+            rngShoot = Random.Range(1, 5);
+        }
+        else if (isMoving == false)
+        {
+            rngShoot = 1;
+        }
+
+        if (rngShoot == 1)
+        {
+            Health -= damage;
+            audioSource.PlayOneShot(bulletHit);
+        }
+        if (rngShoot >= 2)
+        {
+            rngSound = Random.Range(1, 6);
+            if (rngSound == 1)
+            {
+                audioSource.PlayOneShot(bulletMiss1);
+            }
+            else if (rngSound == 2)
+            {
+                audioSource.PlayOneShot(bulletMiss2);
+            }
+            else if (rngSound == 3)
+            {
+                audioSource.PlayOneShot(bulletMiss3);
+            }
+            else if (rngSound == 4)
+            {
+                audioSource.PlayOneShot(bulletMiss4);
+            }
+            else if (rngSound == 5)
+            {
+                audioSource.PlayOneShot(bulletMiss5);
+            }
         }
     }
 }
