@@ -155,7 +155,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 0}
   speed: 6
-  gravity: -9.81
+  gravity: -29.81
   jumpHeight: 3
   isGrounded: 0
   jumpNumber: 0

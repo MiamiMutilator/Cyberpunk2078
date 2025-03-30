@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     public Transform cam;
 
     public float speed = 6;
-    public float gravity = -9.81f;
+    public float gravity = -29.81f;
     public float jumpHeight = 3;
     Vector3 velocity;
     public bool isGrounded;
