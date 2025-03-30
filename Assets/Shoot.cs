@@ -34,8 +34,8 @@ public class Shoot : MonoBehaviour
             Debug.DrawRay(FirePoint.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
         }
 
-        ThirdPersonMovement playerHealth = hit.transform.GetComponent<ThirdPersonMovement>();
-        Debug.Log("Bang");
+        PlayerController playerHealth = hit.transform.GetComponent<PlayerController>();
+        //Debug.Log("Bang");
 
         if(playerHealth != null)
         {
@@ -44,7 +44,7 @@ public class Shoot : MonoBehaviour
         else if (playerHealth == null)
         {
             fired = false;
-            Debug.Log("Nothing");
+            //Debug.Log("Nothing");
         }
         StartCoroutine(shootCooldown());
 
