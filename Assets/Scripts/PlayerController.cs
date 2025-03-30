@@ -12,9 +12,9 @@ public class PlayerController : MonoBehaviour
     public Transform cam;
 
     public float speed = 6;
-    public float gravity = -29.81f;
+    //public float gravity = -9.81f;
     public float jumpHeight = 3;
-    Vector3 velocity;
+    //Vector3 velocity;
     public bool isGrounded;
 
     public float jumpNumber;
@@ -52,6 +52,9 @@ public class PlayerController : MonoBehaviour
     public AudioClip bulletMiss4;
     public AudioClip bulletMiss5;
 
+    public Slider healthSlider;
+    
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -63,6 +66,12 @@ public class PlayerController : MonoBehaviour
         //health and dodging
         rngSeed = Random.Range(1, 101);
         audioSource = GetComponent<AudioSource>();
+
+        //find camera
+        cam = GameObject.Find("Main Camera").GetComponent<Transform>();
+
+        //find health slider
+        //healthSlider = GameObject.Find("Slider").GetComponent<Slider>();
     }
 
     // Update is called once per frame
@@ -71,10 +80,12 @@ public class PlayerController : MonoBehaviour
         //grounded check
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
+        /*
         if (isGrounded && velocity.y < 0)
         {
             velocity.y = -2f;
         }
+        */
 
         if (isGrounded)
         {
@@ -112,7 +123,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-
+        //Debug.Log(rb.linearVelocity);
     }
 
     private void FixedUpdate()
@@ -134,14 +145,14 @@ public class PlayerController : MonoBehaviour
             {
                 rb.linearVelocity = new Vector3(rb.linearVelocity.x, jumpHeight * 3f, rb.linearVelocity.z);
                 //velocity.y = Mathf.Sqrt(jumpHeight * -2 * gravity);
-                Debug.Log("Jumped");
+                //Debug.Log("Jumped");
                 jumpNumber++;
             }
             if (Input.GetButtonDown("Jump") && isGrounded == false && jumpNumber != 1)
             {
                 rb.linearVelocity = new Vector3(rb.linearVelocity.x, jumpHeight * 3f, rb.linearVelocity.z);
                 //velocity.y = Mathf.Sqrt(jumpHeight * -2 * gravity);
-                Debug.Log("Jumped");
+                //Debug.Log("Jumped");
                 jumpNumber++;
 
             }
@@ -172,6 +183,7 @@ public class PlayerController : MonoBehaviour
         {
             Vector3 limitedVel = flatVel.normalized * speed;
             rb.linearVelocity = new Vector3(limitedVel.x, rb.linearVelocity.y, limitedVel.z);
+            //Debug.Log("speed controlled");
         }
     }
 
@@ -242,7 +254,7 @@ public class PlayerController : MonoBehaviour
 
         if (rngShoot == 1)
         {
-            Health -= damage;
+            UpdateHealth(damage);
             audioSource.PlayOneShot(bulletHit);
         }
         if (rngShoot >= 2)
@@ -269,5 +281,11 @@ public class PlayerController : MonoBehaviour
                 audioSource.PlayOneShot(bulletMiss5);
             }
         }
+    }
+
+    void UpdateHealth(int damage)
+    {
+        Health -= damage;
+        //healthSlider.value = Health;
     }
 }

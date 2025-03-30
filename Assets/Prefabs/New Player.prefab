@@ -154,8 +154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 0}
-  speed: 6
-  gravity: -29.81
+  speed: 10
   jumpHeight: 3
   isGrounded: 0
   jumpNumber: 0
@@ -168,7 +167,7 @@ MonoBehaviour:
   blinkDistance: 5
   blinkCooldown: 1
   blinkKeybind: 99
-  groundDrag: 5
+  groundDrag: 3
   Health: 100
   isMoving: 0
   bulletHit: {fileID: 8300000, guid: 453dd7944e5f8a44880f7fa6aa81b530, type: 3}
