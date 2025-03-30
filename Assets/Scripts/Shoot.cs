@@ -39,7 +39,7 @@ public class Shoot : MonoBehaviour
 
         if(playerHealth != null)
         {
-            playerHealth.Damage(15);
+            playerHealth.Damage(-15);
         }
         else if (playerHealth == null)
         {

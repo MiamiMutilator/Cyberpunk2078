@@ -37,8 +37,7 @@ public class PlayerController : MonoBehaviour
     float horizontal, vertical;
     public float groundDrag = 5f;
 
-    //health and dodging
-    public int Health = 100;
+    //dodging
     int rngSeed;
     int rngShoot;
     int rngSound;
@@ -254,7 +253,7 @@ public class PlayerController : MonoBehaviour
 
         if (rngShoot == 1)
         {
-            UpdateHealth(damage);
+            GameManager.instance.UpdateHealth(damage);
             audioSource.PlayOneShot(bulletHit);
         }
         if (rngShoot >= 2)
@@ -281,11 +280,5 @@ public class PlayerController : MonoBehaviour
                 audioSource.PlayOneShot(bulletMiss5);
             }
         }
-    }
-
-    void UpdateHealth(int damage)
-    {
-        Health -= damage;
-        //healthSlider.value = Health;
     }
 }
