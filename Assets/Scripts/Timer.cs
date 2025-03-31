@@ -17,7 +17,8 @@ public class Timer : MonoBehaviour
 
     void Start()
     {
-        if (timer <= 0) ResetTimer();
+        //if (timer <= 0) ResetTimer();
+        ResetTimer();
         timerActive = true;
     }
 
