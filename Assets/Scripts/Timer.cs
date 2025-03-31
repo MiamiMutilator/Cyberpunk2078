@@ -7,7 +7,7 @@ public class Timer : MonoBehaviour
     public static Timer instance;
     public TMP_Text timerText;
     static float timer;
-    public float timerLength = 90;
+    public float timerLength = 60;
     bool timerActive;
 
     private void Awake()
@@ -30,7 +30,7 @@ public class Timer : MonoBehaviour
 
         if (timer < 0)
         {
-            SceneManager.LoadSceneAsync(3);
+            SceneManager.LoadSceneAsync(2);
         }
     }
     
