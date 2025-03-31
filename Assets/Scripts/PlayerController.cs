@@ -54,6 +54,9 @@ public class PlayerController : MonoBehaviour
     public AudioClip bulletMiss5;
 
     public Slider healthSlider;
+
+    //animations
+    private Animator animator;
     
 
     private void Awake()
@@ -73,6 +76,10 @@ public class PlayerController : MonoBehaviour
 
         //find health slider
         //healthSlider = GameObject.Find("Slider").GetComponent<Slider>();
+
+        animator = GetComponent<Animator>();
+
+        animator.SetBool("Idle", true);
     }
 
     // Update is called once per frame
@@ -138,6 +145,15 @@ public class PlayerController : MonoBehaviour
         horizontal = Input.GetAxisRaw("Horizontal");
         vertical = Input.GetAxisRaw("Vertical");
 
+        if (Input.GetButton("Horizontal") || Input.GetButton("Vertical"))
+        {
+            animator.SetBool("Run", true);
+        }
+        else
+        {
+            animator.SetBool("Idle", true);
+        }
+
         if (Input.GetKeyDown(blinkKeybind) && canBlink)
             StartCoroutine(Blink());
         else
@@ -148,6 +164,7 @@ public class PlayerController : MonoBehaviour
                 //velocity.y = Mathf.Sqrt(jumpHeight * -2 * gravity);
                 //Debug.Log("Jumped");
                 jumpNumber++;
+                animator.SetBool("Jump", true);
             }
             if (Input.GetButtonDown("Jump") && isGrounded == false && jumpNumber != 1)
             {
@@ -155,6 +172,7 @@ public class PlayerController : MonoBehaviour
                 //velocity.y = Mathf.Sqrt(jumpHeight * -2 * gravity);
                 //Debug.Log("Jumped");
                 jumpNumber++;
+                animator.SetBool("Jump", true);
 
             }
         }
