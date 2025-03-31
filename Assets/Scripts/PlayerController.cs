@@ -6,6 +6,7 @@ using System.Threading;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UIElements;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -287,5 +288,13 @@ public class PlayerController : MonoBehaviour
     {
         Health -= damage;
         //healthSlider.value = Health;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "WinTrigger")
+        {
+            SceneManager.LoadScene("Win Scene");
+        }
     }
 }
