@@ -7,12 +7,14 @@ public class PauseManager : MonoBehaviour
     private bool isPaused = false;
     bool enemyFound = false;
     public GameObject pauseMenuUI;
+    public GameObject howtoplayUI;
+    public GameObject creditsUI;
     GameObject player, reticle;
     AudioSource enemyAudio;
 
     void Start()
     {
-        player = GameObject.Find("Physical Player");
+        player = GameObject.Find("New Player");
         //pauseMenuUI.SetActive(false);
         reticle = GameObject.Find("Reticle");
         ResumeGame();
@@ -26,6 +28,10 @@ public class PauseManager : MonoBehaviour
                 ResumeGame();
             else
                 PauseGame();
+        }
+        if (pauseMenuUI.activeInHierarchy == false)
+        {
+            ResumeGame();
         }
     }
 
