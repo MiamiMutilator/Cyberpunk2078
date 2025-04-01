@@ -54,6 +54,8 @@ public class PlayerController : MonoBehaviour
     public AudioClip bulletMiss3;
     public AudioClip bulletMiss4;
     public AudioClip bulletMiss5;
+    public AudioClip jumpSound;
+    public AudioClip dashSound;
 
     public Slider healthSlider;
 
@@ -166,6 +168,7 @@ public class PlayerController : MonoBehaviour
         {
             if (Input.GetButtonDown("Jump") && isGrounded)
             {
+                audioSource.PlayOneShot(jumpSound);
                 rb.linearVelocity = new Vector3(rb.linearVelocity.x, jumpHeight * 3f, rb.linearVelocity.z);
                 //velocity.y = Mathf.Sqrt(jumpHeight * -2 * gravity);
                 //Debug.Log("Jumped");
@@ -176,6 +179,7 @@ public class PlayerController : MonoBehaviour
             }
             if (Input.GetButtonDown("Jump") && isGrounded == false && jumpNumber != 1)
             {
+                audioSource.PlayOneShot(jumpSound);
                 rb.linearVelocity = new Vector3(rb.linearVelocity.x, jumpHeight * 3f, rb.linearVelocity.z);
                 //velocity.y = Mathf.Sqrt(jumpHeight * -2 * gravity);
                 //Debug.Log("Jumped");
@@ -222,6 +226,7 @@ public class PlayerController : MonoBehaviour
         float adjustedDistance;
         canBlink = false;
         blinkTimer = blinkCooldown;
+        audioSource.PlayOneShot(dashSound);
 
         //step 1: record player velocity & freeze player SKIP
 
