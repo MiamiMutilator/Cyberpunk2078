@@ -25,9 +25,15 @@ public class PauseManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.P))
         {
             if (isPaused)
-                ResumeGame();
+            {
+                UnityEngine.Cursor.lockState = CursorLockMode.Locked;
+                ResumeGame(); 
+            }
             else
+            {
+                Cursor.lockState = CursorLockMode.None;
                 PauseGame();
+            }
         }
         if (pauseMenuUI.activeInHierarchy == false)
         {
