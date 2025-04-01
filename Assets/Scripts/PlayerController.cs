@@ -33,7 +33,8 @@ public class PlayerController : MonoBehaviour
     bool vulverable;
     [SerializeField] float blinkDistance = 5f;
     [SerializeField] float blinkCooldown = 1f;
-    public KeyCode blinkKeybind = KeyCode.C;
+    public KeyCode blinkKeyboard = KeyCode.C;
+    public KeyCode blinkController = KeyCode.Joystick1Button2;
     float blinkTimer;
     bool canBlink;
     float horizontal, vertical;
@@ -159,7 +160,7 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("Idle", true);
         }
 
-        if (Input.GetKeyDown(blinkKeybind) && canBlink)
+        if ((Input.GetKeyDown(blinkKeyboard) || Input.GetKeyDown(blinkController)) && canBlink)
             StartCoroutine(Blink());
         else
         {

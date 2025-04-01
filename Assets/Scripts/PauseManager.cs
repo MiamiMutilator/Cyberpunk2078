@@ -11,6 +11,9 @@ public class PauseManager : MonoBehaviour
     GameObject player, reticle;
     AudioSource enemyAudio;
 
+    public KeyCode pauseKeyboard = KeyCode.C;
+    public KeyCode pauseController = KeyCode.Joystick1Button9;
+
     void Start()
     {
         player = GameObject.Find("New Player");
@@ -21,7 +24,7 @@ public class PauseManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P))
+        if (PauseButtonCheck())
         {
             if (isPaused)
             {
@@ -58,5 +61,12 @@ public class PauseManager : MonoBehaviour
         //PlayerMovement.instance.SetPlayerStatus(true);
         reticle.SetActive(true);
         
+    }
+
+    bool PauseButtonCheck()
+    {
+        if (Input.GetKeyDown(pauseKeyboard) || Input.GetKeyDown(pauseController))
+            return true;
+        return false;
     }
 }
