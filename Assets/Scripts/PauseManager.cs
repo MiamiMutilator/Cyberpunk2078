@@ -11,14 +11,14 @@ public class PauseManager : MonoBehaviour
     GameObject player, reticle;
     AudioSource enemyAudio;
 
-    public KeyCode pauseKeyboard = KeyCode.C;
+    private KeyCode pauseKeyboard = KeyCode.P;
     public KeyCode pauseController = KeyCode.Joystick1Button9;
 
     void Start()
     {
-        player = GameObject.Find("New Player");
+        player = GameObject.Find("T-Pose");
         //pauseMenuUI.SetActive(false);
-        reticle = GameObject.Find("Reticle");
+        //reticle = GameObject.Find("Reticle");
         ResumeGame();
     }
 
@@ -46,7 +46,7 @@ public class PauseManager : MonoBehaviour
         pauseMenuUI.SetActive(true);
         player.SetActive(false);
         //PlayerMovement.instance.SetPlayerStatus(false);
-        reticle.SetActive(false);
+        //reticle.SetActive(false);
         
     }
 
@@ -59,7 +59,7 @@ public class PauseManager : MonoBehaviour
         pauseMenuUI.SetActive(false);
         player.SetActive(true);
         //PlayerMovement.instance.SetPlayerStatus(true);
-        reticle.SetActive(true);
+        //reticle.SetActive(true);
         
     }
 

@@ -22,8 +22,8 @@ public class GameManager : MonoBehaviour
     {
         Physics.gravity = new Vector3(0, -gravity, 0);
 
-        health = maxHealth;
-        healthText.text = "Health: " + health;
+        //health = maxHealth;
+        //healthText.text = "Health: " + health;
         //Debug.Log(health);
     }
 
