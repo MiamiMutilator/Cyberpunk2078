@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     public float jumpHeight = 3;
     //Vector3 velocity;
     public bool isGrounded;
+    public bool jumped;
 
     public float jumpNumber;
 
@@ -80,6 +81,8 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
 
         animator.SetBool("Idle", true);
+
+        UnityEngine.Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Update is called once per frame
@@ -148,9 +151,11 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButton("Horizontal") || Input.GetButton("Vertical"))
         {
             animator.SetBool("Run", true);
+            animator.SetBool("Idle", false);
         }
         else
         {
+            animator.SetBool("Run", false);
             animator.SetBool("Idle", true);
         }
 
@@ -165,6 +170,8 @@ public class PlayerController : MonoBehaviour
                 //Debug.Log("Jumped");
                 jumpNumber++;
                 animator.SetBool("Jump", true);
+                jumped = true;
+                StartCoroutine(Wait());
             }
             if (Input.GetButtonDown("Jump") && isGrounded == false && jumpNumber != 1)
             {
@@ -173,7 +180,7 @@ public class PlayerController : MonoBehaviour
                 //Debug.Log("Jumped");
                 jumpNumber++;
                 animator.SetBool("Jump", true);
-
+                StartCoroutine(Wait());
             }
         }
     }
@@ -314,5 +321,13 @@ public class PlayerController : MonoBehaviour
         {
             SceneManager.LoadScene("Win Scene");
         }
+    }
+
+    IEnumerator Wait()
+    {
+        yield return new WaitForSeconds(1);
+        animator.SetBool("Jump", false);
+        animator.SetBool("Idle", true);
+        yield break;
     }
 }
