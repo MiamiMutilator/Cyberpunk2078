@@ -5,65 +5,68 @@ using UnityEngine;
 public class PauseManager : MonoBehaviour
 {
     private bool isPaused = false;
-    bool enemyFound = false;
     public GameObject pauseMenuUI;
     public GameObject howtoplayUI;
     public GameObject creditsUI;
     GameObject player, reticle;
     AudioSource enemyAudio;
 
+    private KeyCode pauseKeyboard = KeyCode.P;
+    public KeyCode pauseController = KeyCode.Joystick1Button9;
+
     void Start()
     {
-        player = GameObject.Find("New Player");
+        player = GameObject.Find("T-Pose");
         //pauseMenuUI.SetActive(false);
-        reticle = GameObject.Find("Reticle");
+        //reticle = GameObject.Find("Reticle");
         ResumeGame();
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (PauseButtonCheck())
         {
             if (isPaused)
-                ResumeGame();
+            {
+                ResumeGame(); 
+            }
             else
+            {
                 PauseGame();
-        }
-        if (pauseMenuUI.activeInHierarchy == false)
-        {
-            ResumeGame();
+            }
         }
     }
 
     public void PauseGame()
     {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
         Time.timeScale = 0f;
         isPaused = true;
         pauseMenuUI.SetActive(true);
         player.SetActive(false);
-        if (enemyFound) enemyAudio.Pause();
         //PlayerMovement.instance.SetPlayerStatus(false);
-        reticle.SetActive(false);
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
+        //reticle.SetActive(false);
+        
     }
 
     public void ResumeGame()
     {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
         Time.timeScale = 1f;
         isPaused = false;
         pauseMenuUI.SetActive(false);
         player.SetActive(true);
-        if (enemyFound) enemyAudio.Play();
         //PlayerMovement.instance.SetPlayerStatus(true);
-        reticle.SetActive(true);
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        //reticle.SetActive(true);
+        
     }
 
-    public void FindEnemy()
+    bool PauseButtonCheck()
     {
-        enemyAudio = GameObject.Find("Enemy").GetComponent<AudioSource>();
-        enemyFound = true;
+        if (Input.GetKeyDown(pauseKeyboard) || Input.GetKeyDown(pauseController))
+            return true;
+        return false;
     }
 }

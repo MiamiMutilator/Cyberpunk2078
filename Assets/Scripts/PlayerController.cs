@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     public float jumpHeight = 3;
     //Vector3 velocity;
     public bool isGrounded;
+    public bool jumped;
 
     public float jumpNumber;
 
@@ -32,7 +33,8 @@ public class PlayerController : MonoBehaviour
     bool vulverable;
     [SerializeField] float blinkDistance = 5f;
     [SerializeField] float blinkCooldown = 1f;
-    public KeyCode blinkKeybind = KeyCode.C;
+    public KeyCode blinkKeyboard = KeyCode.C;
+    public KeyCode blinkController = KeyCode.Joystick1Button2;
     float blinkTimer;
     bool canBlink;
     float horizontal, vertical;
@@ -52,8 +54,13 @@ public class PlayerController : MonoBehaviour
     public AudioClip bulletMiss3;
     public AudioClip bulletMiss4;
     public AudioClip bulletMiss5;
+    public AudioClip jumpSound;
+    public AudioClip dashSound;
 
     public Slider healthSlider;
+
+    //animations
+    private Animator animator;
     
 
     private void Awake()
@@ -73,6 +80,12 @@ public class PlayerController : MonoBehaviour
 
         //find health slider
         //healthSlider = GameObject.Find("Slider").GetComponent<Slider>();
+
+        animator = GetComponent<Animator>();
+
+        animator.SetBool("Idle", true);
+
+        UnityEngine.Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Update is called once per frame
@@ -138,24 +151,41 @@ public class PlayerController : MonoBehaviour
         horizontal = Input.GetAxisRaw("Horizontal");
         vertical = Input.GetAxisRaw("Vertical");
 
-        if (Input.GetKeyDown(blinkKeybind) && canBlink)
+        if (Input.GetButton("Horizontal") || Input.GetButton("Vertical"))
+        {
+            animator.SetBool("Run", true);
+            animator.SetBool("Idle", false);
+        }
+        else
+        {
+            animator.SetBool("Run", false);
+            animator.SetBool("Idle", true);
+        }
+
+        if ((Input.GetKeyDown(blinkKeyboard) || Input.GetKeyDown(blinkController)) && canBlink)
             StartCoroutine(Blink());
         else
         {
             if (Input.GetButtonDown("Jump") && isGrounded)
             {
+                audioSource.PlayOneShot(jumpSound);
                 rb.linearVelocity = new Vector3(rb.linearVelocity.x, jumpHeight * 3f, rb.linearVelocity.z);
                 //velocity.y = Mathf.Sqrt(jumpHeight * -2 * gravity);
                 //Debug.Log("Jumped");
                 jumpNumber++;
+                animator.SetBool("Jump", true);
+                jumped = true;
+                StartCoroutine(Wait());
             }
             if (Input.GetButtonDown("Jump") && isGrounded == false && jumpNumber != 1)
             {
+                audioSource.PlayOneShot(jumpSound);
                 rb.linearVelocity = new Vector3(rb.linearVelocity.x, jumpHeight * 3f, rb.linearVelocity.z);
                 //velocity.y = Mathf.Sqrt(jumpHeight * -2 * gravity);
                 //Debug.Log("Jumped");
                 jumpNumber++;
-
+                animator.SetBool("Jump", true);
+                StartCoroutine(Wait());
             }
         }
     }
@@ -196,6 +226,7 @@ public class PlayerController : MonoBehaviour
         float adjustedDistance;
         canBlink = false;
         blinkTimer = blinkCooldown;
+        audioSource.PlayOneShot(dashSound);
 
         //step 1: record player velocity & freeze player SKIP
 
@@ -296,5 +327,13 @@ public class PlayerController : MonoBehaviour
         {
             SceneManager.LoadScene("Win Scene");
         }
+    }
+
+    IEnumerator Wait()
+    {
+        yield return new WaitForSeconds(1);
+        animator.SetBool("Jump", false);
+        animator.SetBool("Idle", true);
+        yield break;
     }
 }
