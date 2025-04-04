@@ -13,9 +13,8 @@ public class PlayerController : MonoBehaviour
     public Transform cam;
 
     public float speed = 6;
-    //public float gravity = -9.81f;
     public float jumpHeight = 3;
-    //Vector3 velocity;
+    public float airStrafeMultiplier = 0.5f;
     public bool isGrounded;
     public bool jumped;
 
@@ -201,7 +200,9 @@ public class PlayerController : MonoBehaviour
             transform.rotation = Quaternion.Euler(0f, angle, 0f);
 
             Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-            rb.AddForce(moveDir * speed * 5f, ForceMode.Force);
+            
+           if (isGrounded) rb.AddForce(moveDir * speed * 5f, ForceMode.Force);
+           else rb.AddForce(moveDir * speed * 5f * airStrafeMultiplier, ForceMode.Force);
         }
     }
 
