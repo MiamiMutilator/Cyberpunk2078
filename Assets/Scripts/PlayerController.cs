@@ -325,14 +325,6 @@ public class PlayerController : MonoBehaviour
         //healthSlider.value = Health;
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag == "WinTrigger")
-        {
-            SceneManager.LoadScene("Win Scene");
-        }
-    }
-
     IEnumerator Wait()
     {
         yield return new WaitForSeconds(1);

@@ -17,21 +17,22 @@ public class Timer : MonoBehaviour
 
     void Start()
     {
-        //if (timer <= 0) ResetTimer();
+        //if (timer <= 0) ResetTimer();   //uncomment if choosing to not reset timer on death
         ResetTimer();
         timerActive = true;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (!timerActive) return;
         timer -= Time.deltaTime;
         timerText.text = timer.ToString("F2");
 
-        if (timer < 0)
+        if (timer <= 0)
         {
-            SceneManager.LoadSceneAsync(2);
+            timer = 0;
+            timerActive = false;
+            SceneChanger.instance.ChangeScene(7); //change to 2 once hub level is created
         }
     }
     
