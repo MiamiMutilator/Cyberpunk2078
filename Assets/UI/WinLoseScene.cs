@@ -3,6 +3,10 @@ using UnityEngine.SceneManagement;
 
 public class WinLoseScene : MonoBehaviour
 {
+    void Start()
+    {
+        Cursor.lockState = CursorLockMode.None;
+    }
     public void ReturnToMainMenu()
     {
         SceneManager.LoadSceneAsync(0);
