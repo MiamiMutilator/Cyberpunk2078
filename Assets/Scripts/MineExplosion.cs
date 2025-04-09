@@ -19,6 +19,7 @@ public class MineExplosion : MonoBehaviour
         {
             exploded = true;
             explosionEffect.SetActive(true);
+            StartCoroutine(Wait());
 
         }
     }
@@ -28,5 +29,6 @@ public class MineExplosion : MonoBehaviour
     {
         yield return new WaitForSeconds(3);
         Destroy(gameObject);
+        yield break;
     }
 }
