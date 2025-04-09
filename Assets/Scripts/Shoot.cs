@@ -7,6 +7,7 @@ public class Shoot : MonoBehaviour
 {
     public Transform FirePoint;
     public bool fired = false;
+    public int fireCooldown = 3;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -39,7 +40,7 @@ public class Shoot : MonoBehaviour
 
         if(playerHealth != null)
         {
-            playerHealth.Damage(-15);
+            playerHealth.Damage(15);
         }
         else if (playerHealth == null)
         {
@@ -53,7 +54,7 @@ public class Shoot : MonoBehaviour
 
     IEnumerator shootCooldown()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(fireCooldown);
         fired = false;
         yield break;
 
