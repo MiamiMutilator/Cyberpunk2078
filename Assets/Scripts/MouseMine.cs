@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class MouseMine : MonoBehaviour
 {
@@ -23,10 +24,12 @@ public class MouseMine : MonoBehaviour
         }
     }
 
-    public PlayerController playerHealth;
+    //public PlayerController playerHealth;
+    
     public void explosion()
     {
-        playerHealth.Damage(50);
+        GameManager.instance.UpdateHealth(-50);
+        //playerHealth.Damage(50);
         Destroy(gameObject);
     }
 
