@@ -1,9 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PauseManager : MonoBehaviour
 {
+
+    public GameObject pauseFirstButton, HowtoplayFirstButton, HowtoplayClosedButton;
+
     private bool isPaused = false;
     public GameObject pauseMenuUI;
     public GameObject howtoplayUI;
