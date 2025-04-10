@@ -28,10 +28,15 @@ public class EnemyController : MonoBehaviour
 
     private void DropItem()
     {
-        if (Random.Range(0, 10) == 0)
+        if (Random.Range(0, 10) >= 0)
         {
-            Transform enemyLocation = gameObject.transform;
+            Vector3 enemyLocation = gameObject.transform.position;
             //GameObject item = Instantiate(Enemy, enemyLocation)
+
+            GameObject sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+            sphere.transform.position = enemyLocation;
+            sphere.GetComponent<Collider>().isTrigger = true;
+            sphere.AddComponent<ItemPickup>();
         }      
     }
 }

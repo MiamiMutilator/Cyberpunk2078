@@ -73,7 +73,7 @@ public class GameManager : MonoBehaviour
                 levelNumber = 2;
                 sceneType = 3;
                 break;
-            case "Roof": //placeholder
+            case "Rooftops": //placeholder
                 levelNumber = 3;
                 sceneType = 3;
                 break;
@@ -181,7 +181,7 @@ public class GameManager : MonoBehaviour
     public bool IsItemLevel()
     {
         //change if level with the items is not the alley
-        if (levelNumber == 2)
+        if (levelNumber == 3)
             return true;
         return false;
     }
