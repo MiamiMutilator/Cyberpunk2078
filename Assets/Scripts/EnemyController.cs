@@ -12,6 +12,12 @@ public class EnemyController : MonoBehaviour
         */
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "AttackBox")
+            Kill();
+    }
+
     public void Kill()
     {
         if (GameManager.instance.IsItemLevel())

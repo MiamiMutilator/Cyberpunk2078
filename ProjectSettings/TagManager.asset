@@ -6,6 +6,7 @@ TagManager:
   tags:
   - WinTrigger
   - Enemy
+  - AttackBox
   layers:
   - Default
   - TransparentFX

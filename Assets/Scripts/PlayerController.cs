@@ -228,6 +228,7 @@ public class PlayerController : MonoBehaviour
         canBlink = false;
         blinkTimer = blinkCooldown;
         audioSource.PlayOneShot(dashSound);
+        LayerMask mask = LayerMask.GetMask("Enemy");
 
         //step 1: record player velocity & freeze player SKIP
 
@@ -241,7 +242,7 @@ public class PlayerController : MonoBehaviour
         Debug.DrawRay(transform.position, forward, Color.blue, 3f);
 
         //step 4: check if blink can go max distance
-        if (Physics.Raycast(transform.position, transform.forward, out hit, blinkDistance))
+        if (Physics.Raycast(transform.position, transform.forward, out hit, blinkDistance, mask))
         {
             //shorten distance so that you stop in front of obstacle
             adjustedDistance = hit.distance - 1f;
@@ -256,7 +257,10 @@ public class PlayerController : MonoBehaviour
 
         //step 4.5: calculate new position after blink
         Vector3 finalBlinkPosition = transform.position + new Vector3(transform.forward.x * adjustedDistance, transform.forward.y * adjustedDistance, transform.forward.z * adjustedDistance);
-        
+
+        //step 4.6: attack enemies in dash path
+        DashAttack(adjustedDistance);
+
         //step 5: move player based on distance from step 4
         rb.position = finalBlinkPosition;
 
@@ -331,5 +335,33 @@ public class PlayerController : MonoBehaviour
         animator.SetBool("Jump", false);
         animator.SetBool("Idle", true);
         yield break;
+    }
+
+    void DashAttack(float length)
+    {
+        GameObject player = GameObject.Find("Player");
+
+
+        GameObject attack = GameObject.CreatePrimitive(PrimitiveType.Cube);
+
+        //decouple from player
+        attack.transform.parent = null;
+
+        //set size and position and rotation
+        attack.transform.localScale = new Vector3(length, 3f, 0.5f);
+        attack.transform.position = player.transform.position; //move to player position
+        attack.transform.Translate(player.transform.forward * (length/2)); //move to halfway past player
+        attack.transform.rotation = player.transform.rotation; //rotate to same as player
+        attack.transform.Rotate(0, -90, 0);    //rotate again to correct angle
+
+
+        //make invisible
+        attack.GetComponent<Renderer>().enabled = false;
+        //make trigger
+        attack.GetComponent<Collider>().isTrigger = true;
+        //give it attack tag
+        attack.tag = "AttackBox";
+        //assign its script
+        attack.AddComponent<AttackBox>();
     }
 }
