@@ -11,12 +11,14 @@ public class PauseManager : MonoBehaviour
     GameObject player, reticle;
     AudioSource enemyAudio;
 
-    private KeyCode pauseKeyboard = KeyCode.P;
-    public KeyCode pauseController = KeyCode.Joystick1Button9;
+    KeyCode pauseKeyboard = KeyCode.P;
+    KeyCode pauseController = KeyCode.JoystickButton7;
+
+    //public GameObject pauseFirst
 
     void Start()
     {
-        player = GameObject.Find("T-Pose");
+        player = GameObject.Find("Player");
         //pauseMenuUI.SetActive(false);
         //reticle = GameObject.Find("Reticle");
         ResumeGame();

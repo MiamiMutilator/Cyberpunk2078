@@ -32,8 +32,8 @@ public class PlayerController : MonoBehaviour
     bool vulverable;
     [SerializeField] float blinkDistance = 5f;
     [SerializeField] float blinkCooldown = 1f;
-    public KeyCode blinkKeyboard = KeyCode.C;
-    public KeyCode blinkController = KeyCode.Joystick1Button2;
+    KeyCode blinkKeyboard = KeyCode.C;
+    KeyCode blinkController = KeyCode.JoystickButton1;
     float blinkTimer;
     bool canBlink;
     float horizontal, vertical;
@@ -228,7 +228,7 @@ public class PlayerController : MonoBehaviour
         canBlink = false;
         blinkTimer = blinkCooldown;
         audioSource.PlayOneShot(dashSound);
-        LayerMask mask = LayerMask.GetMask("Enemy");
+        LayerMask mask = LayerMask.GetMask("Ground");
 
         //step 1: record player velocity & freeze player SKIP
 

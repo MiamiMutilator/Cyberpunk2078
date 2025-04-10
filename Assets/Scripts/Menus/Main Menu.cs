@@ -1,9 +1,11 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public class MainMenu : MonoBehaviour
 {
-    
+    public GameObject mainFirst, optionsFirst, optionsClose, cheatsFirst, cheatsClose;
+
     void Start()
     {
         
