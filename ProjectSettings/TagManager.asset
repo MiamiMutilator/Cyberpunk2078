@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 3
   tags:
   - WinTrigger
+  - Enemy
+  - AttackBox
   layers:
   - Default
   - TransparentFX

@@ -42,8 +42,8 @@ public class GameManager : MonoBehaviour
         if (health > maxHealth) health = maxHealth;
         //if (health <= 0) kill player
 
-        healthText.text = "Health: " + health;
-        //Debug.Log(health);
+        //healthText.text = "Health: " + health;
+        Debug.Log(health);
     }
 
     void SceneCheck()
