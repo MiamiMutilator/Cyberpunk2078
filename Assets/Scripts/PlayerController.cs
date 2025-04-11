@@ -150,7 +150,7 @@ public class PlayerController : MonoBehaviour
         horizontal = Input.GetAxisRaw("Horizontal");
         vertical = Input.GetAxisRaw("Vertical");
 
-        if (Input.GetButton("Horizontal") || Input.GetButton("Vertical") || Input.GetAxis("Vertical") > .1f || Input.GetAxis("Horizontal") > .1f || Input.GetAxis("Vertical") > -.1f || Input.GetAxis("Horizontal") > -.1f || Input.GetAxis("Vertical") < -.1f && Input.GetAxis("Horizontal") < -.1f)
+        if (Input.GetButton("Horizontal") || Input.GetButton("Vertical") || Input.GetAxis("Vertical") > .1f || Input.GetAxis("Horizontal") > .1f || Input.GetAxis("Vertical") < -.1f || Input.GetAxis("Horizontal") < -.1f || Input.GetAxis("Vertical") < -.1f && Input.GetAxis("Horizontal") < -.1f)
         {
             animator.SetBool("Run", true);
             animator.SetBool("Idle", false);
