@@ -22,6 +22,10 @@ public class GameManager : MonoBehaviour
     int sceneType; //1 is main menu, 2 is hub, 3 gameplay, 4 is win/loss
     GameObject sewerLight, alleyLight, roofLight;
 
+    [Header("Item UI")]
+    public TMP_Text itemCountText;
+    public TMP_Text warningText;
+
     private void Awake()
     {
         instance = this;
@@ -147,7 +151,14 @@ public class GameManager : MonoBehaviour
     public void ItemCollect()
     {
         itemCount++;
+        UpdateItemUI();
         Debug.Log("Item Count: " + itemCount);
+    }
+
+    private void UpdateItemUI()
+    {
+        if (itemCountText != null)
+            itemCountText.text = $"Items: {itemCount}/{ItemsNeeded}";
     }
 
     public void CompleteLevel()
@@ -187,11 +198,7 @@ public class GameManager : MonoBehaviour
 
     public bool HasEnoughItems()
     {
-        if (itemCount >= ItemsNeeded)
-            return true;
-        Debug.Log("Not Enough Items Collected");
-        Debug.LogFormat("Items Collected: {0}/{1}", itemCount, ItemsNeeded);
-        return false;
+        return itemCount >= ItemsNeeded;
     }
 
     
