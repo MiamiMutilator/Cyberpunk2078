@@ -1,26 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PauseManager : MonoBehaviour
 {
-    private bool isPaused = false;
+    public GameObject pauseFirstButton;
+    public GameObject howtoplayFirstButton, howtoplayClosedButton;
+    public GameObject creditsFirstButton, creditsClosedButton;
+    public GameObject cheatsFirstButton, cheatsClosedButton;
+
     public GameObject pauseMenuUI;
     public GameObject howtoplayUI;
     public GameObject creditsUI;
-    GameObject player, reticle;
-    AudioSource enemyAudio;
+    public GameObject cheatsUI;
+
+    private bool isPaused = false;
+
+    GameObject player;
 
     KeyCode pauseKeyboard = KeyCode.P;
     KeyCode pauseController = KeyCode.JoystickButton7;
 
-    //public GameObject pauseFirst
-
     void Start()
     {
         player = GameObject.Find("Player");
-        //pauseMenuUI.SetActive(false);
-        //reticle = GameObject.Find("Reticle");
         ResumeGame();
     }
 
@@ -29,13 +33,9 @@ public class PauseManager : MonoBehaviour
         if (PauseButtonCheck())
         {
             if (isPaused)
-            {
-                ResumeGame(); 
-            }
+                ResumeGame();
             else
-            {
                 PauseGame();
-            }
         }
     }
 
@@ -45,11 +45,16 @@ public class PauseManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Time.timeScale = 0f;
         isPaused = true;
+
         pauseMenuUI.SetActive(true);
+        howtoplayUI.SetActive(false);
+        creditsUI.SetActive(false);
+        cheatsUI.SetActive(false);
+
         player.SetActive(false);
-        //PlayerMovement.instance.SetPlayerStatus(false);
-        //reticle.SetActive(false);
-        
+
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(pauseFirstButton);
     }
 
     public void ResumeGame()
@@ -58,17 +63,81 @@ public class PauseManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Time.timeScale = 1f;
         isPaused = false;
+
         pauseMenuUI.SetActive(false);
+        howtoplayUI.SetActive(false);
+        creditsUI.SetActive(false);
+        cheatsUI.SetActive(false);
+
         player.SetActive(true);
-        //PlayerMovement.instance.SetPlayerStatus(true);
-        //reticle.SetActive(true);
-        
     }
 
     bool PauseButtonCheck()
     {
-        if (Input.GetKeyDown(pauseKeyboard) || Input.GetKeyDown(pauseController))
-            return true;
-        return false;
+        return Input.GetKeyDown(pauseKeyboard) || Input.GetKeyDown(pauseController);
+    }
+
+    // -------------------- PANEL OPEN FUNCTIONS --------------------
+
+    public void OpenHowToPlay()
+    {
+        pauseMenuUI.SetActive(false);
+        howtoplayUI.SetActive(true);
+        creditsUI.SetActive(false);
+        cheatsUI.SetActive(false);
+
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(howtoplayFirstButton);
+    }
+
+    public void OpenCredits()
+    {
+        pauseMenuUI.SetActive(false);
+        howtoplayUI.SetActive(false);
+        creditsUI.SetActive(true);
+        cheatsUI.SetActive(false);
+
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(creditsFirstButton);
+    }
+
+    public void OpenCheats()
+    {
+        pauseMenuUI.SetActive(false);
+        howtoplayUI.SetActive(false);
+        creditsUI.SetActive(false);
+        cheatsUI.SetActive(true);
+
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(cheatsFirstButton);
+    }
+
+    // -------------------- PANEL CLOSE FUNCTIONS --------------------
+
+    public void CloseHowToPlay()
+    {
+        howtoplayUI.SetActive(false);
+        pauseMenuUI.SetActive(true);
+
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(howtoplayClosedButton);
+    }
+
+    public void CloseCredits()
+    {
+        creditsUI.SetActive(false);
+        pauseMenuUI.SetActive(true);
+
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(creditsClosedButton);
+    }
+
+    public void CloseCheats()
+    {
+        cheatsUI.SetActive(false);
+        pauseMenuUI.SetActive(true);
+
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(cheatsClosedButton);
     }
 }
