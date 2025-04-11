@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8964693596979756253
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6943602500451425683}
+  - component: {fileID: 5715644103510541732}
+  m_Layer: 0
+  m_Name: PauseManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6943602500451425683
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8964693596979756253}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -45.92574, y: 14.100285, z: -65.85847}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5715644103510541732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8964693596979756253}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d939370ce8f188048a0f15b4cb839756, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pauseFirstButton: {fileID: 0}
+  howtoplayFirstButton: {fileID: 0}
+  howtoplayClosedButton: {fileID: 0}
+  creditsFirstButton: {fileID: 0}
+  creditsClosedButton: {fileID: 0}
+  cheatsFirstButton: {fileID: 0}
+  cheatsClosedButton: {fileID: 0}
+  pauseMenuUI: {fileID: 0}
+  howtoplayUI: {fileID: 0}
+  creditsUI: {fileID: 0}
+  cheatsUI: {fileID: 0}
