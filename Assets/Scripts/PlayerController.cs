@@ -150,7 +150,7 @@ public class PlayerController : MonoBehaviour
         horizontal = Input.GetAxisRaw("Horizontal");
         vertical = Input.GetAxisRaw("Vertical");
 
-        if (Input.GetButton("Horizontal") || Input.GetButton("Vertical"))
+        if (Input.GetButton("Horizontal") || Input.GetButton("Vertical") || Input.GetAxis("Vertical") > .1f || Input.GetAxis("Horizontal") > .1f || Input.GetAxis("Vertical") > -.1f || Input.GetAxis("Horizontal") > -.1f || Input.GetAxis("Vertical") < -.1f && Input.GetAxis("Horizontal") < -.1f)
         {
             animator.SetBool("Run", true);
             animator.SetBool("Idle", false);
@@ -160,6 +160,8 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("Run", false);
             animator.SetBool("Idle", true);
         }
+
+        
 
         if ((Input.GetKeyDown(blinkKeyboard) || Input.GetKeyDown(blinkController)) && canBlink)
             StartCoroutine(Blink());
