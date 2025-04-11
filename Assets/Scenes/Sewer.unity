@@ -653,6 +653,8 @@ MonoBehaviour:
       Owner: {fileID: 60523944}
       Enabled: 1
       Input:
+        InputAction: {fileID: 0}
+        Gain: 1
         LegacyInput: Mouse X
         LegacyGain: 100
         CancelDeltaTime: 0
@@ -664,6 +666,8 @@ MonoBehaviour:
       Owner: {fileID: 60523944}
       Enabled: 1
       Input:
+        InputAction: {fileID: 0}
+        Gain: 1
         LegacyInput: Mouse Y
         LegacyGain: -100
         CancelDeltaTime: 0
@@ -675,6 +679,8 @@ MonoBehaviour:
       Owner: {fileID: 60523944}
       Enabled: 1
       Input:
+        InputAction: {fileID: 0}
+        Gain: 1
         LegacyInput: Mouse ScrollWheel
         LegacyGain: -100
         CancelDeltaTime: 0
@@ -682,6 +688,8 @@ MonoBehaviour:
       Driver:
         AccelTime: 0
         DecelTime: 0
+  PlayerIndex: -1
+  AutoEnableInputs: 1
 --- !u!114 &60523942
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4836,8 +4844,6 @@ MonoBehaviour:
   turnSmoothTime: 0.1
   blinkDistance: 5
   blinkCooldown: 1
-  blinkKeyboard: 99
-  blinkController: 352
   groundDrag: 3
   Health: 100
   isMoving: 0
@@ -12816,10 +12822,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d939370ce8f188048a0f15b4cb839756, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pauseFirstButton: {fileID: 0}
+  howtoplayFirstButton: {fileID: 0}
+  howtoplayClosedButton: {fileID: 0}
+  creditsFirstButton: {fileID: 0}
+  creditsClosedButton: {fileID: 0}
+  cheatsFirstButton: {fileID: 0}
+  cheatsClosedButton: {fileID: 0}
   pauseMenuUI: {fileID: 1854938802}
   howtoplayUI: {fileID: 154103435}
   creditsUI: {fileID: 717197363}
-  pauseController: 359
+  cheatsUI: {fileID: 0}
 --- !u!4 &1390487715
 Transform:
   m_ObjectHideFlags: 0
@@ -14627,7 +14640,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 4b01b114a6e8c414792005b74355979b, type: 3}
       propertyPath: m_Name
-      value: T-Pose
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 4b01b114a6e8c414792005b74355979b, type: 3}
       propertyPath: m_IsActive
