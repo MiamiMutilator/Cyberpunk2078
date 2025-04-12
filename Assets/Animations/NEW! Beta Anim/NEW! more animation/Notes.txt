@@ -1,0 +1,4 @@
+These animation controllers are just to show the new animations on the new models in the Animation Test scene. 
+Continue working and adding the new animations to the already existing one with the player controller in Animator window.
+If an animation stop midway and resume in a second try changing the blue arrows in the Animator's Transition arrow to change
+transition smoothness.

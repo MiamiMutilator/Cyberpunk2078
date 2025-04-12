@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     [Header("Game Variables")]
     public float gravity = 9.81f; //default value, refer to inspector for current value
     public int maxHealth = 100; //default value, refer to inspector for current value
-    int health;
+    public int health;
     static bool sewerComplete, alleyComplete, roofComplete;
     int itemCount = 0;
     public int ItemsNeeded = 10;
@@ -21,6 +21,10 @@ public class GameManager : MonoBehaviour
     int levelNumber; //sewer is level 1, alley is level 2, roof is level 3
     int sceneType; //1 is main menu, 2 is hub, 3 gameplay, 4 is win/loss
     GameObject sewerLight, alleyLight, roofLight;
+
+    [Header("Item UI")]
+    public TMP_Text itemCountText;
+    public TMP_Text warningText;
 
     private void Awake()
     {
@@ -40,10 +44,10 @@ public class GameManager : MonoBehaviour
         health += amount;
 
         if (health > maxHealth) health = maxHealth;
-        //if (health <= 0) kill player
+        if (health <= 0) KillPlayer();
 
-        healthText.text = "Health: " + health;
-        //Debug.Log(health);
+        //healthText.text = "Health: " + health;
+        Debug.Log(health);
     }
 
     void SceneCheck()
@@ -73,7 +77,7 @@ public class GameManager : MonoBehaviour
                 levelNumber = 2;
                 sceneType = 3;
                 break;
-            case "Roof": //placeholder
+            case "Rooftops":
                 levelNumber = 3;
                 sceneType = 3;
                 break;
@@ -134,9 +138,9 @@ public class GameManager : MonoBehaviour
 
     void GameplayStart()
     {
-        //health = maxHealth;
+        health = maxHealth;
         //healthText.text = "Health: " + health;
-        //Debug.Log(health);
+        Debug.Log(health);
     }
 
     void WinLossStart()
@@ -147,7 +151,14 @@ public class GameManager : MonoBehaviour
     public void ItemCollect()
     {
         itemCount++;
+        UpdateItemUI();
         Debug.Log("Item Count: " + itemCount);
+    }
+
+    private void UpdateItemUI()
+    {
+        if (itemCountText != null)
+            itemCountText.text = $"Items: {itemCount}/{ItemsNeeded}";
     }
 
     public void CompleteLevel()
@@ -180,22 +191,20 @@ public class GameManager : MonoBehaviour
 
     public bool IsItemLevel()
     {
-        //change if level with the items is not the alley
-        if (levelNumber == 2)
+        if (levelNumber == 3)
             return true;
         return false;
     }
 
     public bool HasEnoughItems()
     {
-        if (itemCount >= ItemsNeeded)
-            return true;
-        Debug.Log("Not Enough Items Collected");
-        Debug.LogFormat("Items Collected: {0}/{1}", itemCount, ItemsNeeded);
-        return false;
+        return itemCount >= ItemsNeeded;
     }
 
-    
+    void KillPlayer()
+    {
+        SceneChanger.instance.ChangeScene(0);
+    }
 
 
 }

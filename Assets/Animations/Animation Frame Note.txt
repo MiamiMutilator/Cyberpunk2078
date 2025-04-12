@@ -1,0 +1,9 @@
+List of animations and frames
+
+0: Still idle
+41 - 68: Run loop
+88 - 105: Jump up
+106 - 111: Mid air
+116: Still falling frame
+112 - 121: Falling down
+122 - 145: Touching the ground

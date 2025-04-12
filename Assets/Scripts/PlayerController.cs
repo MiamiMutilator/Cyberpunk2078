@@ -32,8 +32,8 @@ public class PlayerController : MonoBehaviour
     bool vulverable;
     [SerializeField] float blinkDistance = 5f;
     [SerializeField] float blinkCooldown = 1f;
-    public KeyCode blinkKeyboard = KeyCode.C;
-    public KeyCode blinkController = KeyCode.Joystick1Button2;
+    KeyCode blinkKeyboard = KeyCode.C;
+    KeyCode blinkController = KeyCode.JoystickButton1;
     float blinkTimer;
     bool canBlink;
     float horizontal, vertical;
@@ -150,7 +150,7 @@ public class PlayerController : MonoBehaviour
         horizontal = Input.GetAxisRaw("Horizontal");
         vertical = Input.GetAxisRaw("Vertical");
 
-        if (Input.GetButton("Horizontal") || Input.GetButton("Vertical"))
+        if (Input.GetButton("Horizontal") || Input.GetButton("Vertical") || Input.GetAxis("Vertical") > .1f || Input.GetAxis("Horizontal") > .1f || Input.GetAxis("Vertical") < -.1f || Input.GetAxis("Horizontal") < -.1f || Input.GetAxis("Vertical") < -.1f && Input.GetAxis("Horizontal") < -.1f)
         {
             animator.SetBool("Run", true);
             animator.SetBool("Idle", false);
@@ -160,6 +160,8 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("Run", false);
             animator.SetBool("Idle", true);
         }
+
+        
 
         if ((Input.GetKeyDown(blinkKeyboard) || Input.GetKeyDown(blinkController)) && canBlink)
             StartCoroutine(Blink());
@@ -228,6 +230,7 @@ public class PlayerController : MonoBehaviour
         canBlink = false;
         blinkTimer = blinkCooldown;
         audioSource.PlayOneShot(dashSound);
+        LayerMask mask = LayerMask.GetMask("Ground");
 
         //step 1: record player velocity & freeze player SKIP
 
@@ -241,7 +244,7 @@ public class PlayerController : MonoBehaviour
         Debug.DrawRay(transform.position, forward, Color.blue, 3f);
 
         //step 4: check if blink can go max distance
-        if (Physics.Raycast(transform.position, transform.forward, out hit, blinkDistance))
+        if (Physics.Raycast(transform.position, transform.forward, out hit, blinkDistance, mask))
         {
             //shorten distance so that you stop in front of obstacle
             adjustedDistance = hit.distance - 1f;
@@ -256,7 +259,10 @@ public class PlayerController : MonoBehaviour
 
         //step 4.5: calculate new position after blink
         Vector3 finalBlinkPosition = transform.position + new Vector3(transform.forward.x * adjustedDistance, transform.forward.y * adjustedDistance, transform.forward.z * adjustedDistance);
-        
+
+        //step 4.6: attack enemies in dash path
+        DashAttack(adjustedDistance);
+
         //step 5: move player based on distance from step 4
         rb.position = finalBlinkPosition;
 
@@ -331,5 +337,33 @@ public class PlayerController : MonoBehaviour
         animator.SetBool("Jump", false);
         animator.SetBool("Idle", true);
         yield break;
+    }
+
+    void DashAttack(float length)
+    {
+        GameObject player = GameObject.Find("Player");
+
+
+        GameObject attack = GameObject.CreatePrimitive(PrimitiveType.Cube);
+
+        //decouple from player
+        attack.transform.parent = null;
+
+        //set size and position and rotation
+        attack.transform.localScale = new Vector3(length, 3f, 0.5f);
+        attack.transform.position = player.transform.position; //move to player position
+        attack.transform.Translate(player.transform.forward * (length/2)); //move to halfway past player
+        attack.transform.rotation = player.transform.rotation; //rotate to same as player
+        attack.transform.Rotate(0, -90, 0);    //rotate again to correct angle
+
+
+        //make invisible
+        attack.GetComponent<Renderer>().enabled = false;
+        //make trigger
+        attack.GetComponent<Collider>().isTrigger = true;
+        //give it attack tag
+        attack.tag = "AttackBox";
+        //assign its script
+        attack.AddComponent<AttackBox>();
     }
 }
