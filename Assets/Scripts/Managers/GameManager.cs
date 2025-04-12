@@ -226,6 +226,6 @@ public class GameManager : MonoBehaviour
 
     public bool AllLevelsComplete()
     {
-        return (sewerComplete && alleyComplete && roofComplete)
+        return (sewerComplete && alleyComplete && roofComplete);
     }
 }
