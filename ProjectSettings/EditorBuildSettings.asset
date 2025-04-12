@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Sewer.unity
     guid: d4b63e6067e7cb64f84c3d052f0ba6d2
   - enabled: 1
+    path: Assets/Scenes/Rooftops.unity
+    guid: 26130be273406dd4ea5624a9f1fce14b
+  - enabled: 1
     path: Assets/Scenes/Lose Scene.unity
     guid: 94132669d0c489e46840eaa96ff7b04a
   - enabled: 1
