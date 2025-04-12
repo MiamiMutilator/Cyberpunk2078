@@ -13,9 +13,8 @@ public class PlayerController : MonoBehaviour
     public Transform cam;
 
     public float speed = 6;
-    //public float gravity = -9.81f;
     public float jumpHeight = 3;
-    //Vector3 velocity;
+    public float airStrafeMultiplier = 0.5f;
     public bool isGrounded;
     public bool jumped;
 
@@ -201,7 +200,9 @@ public class PlayerController : MonoBehaviour
             transform.rotation = Quaternion.Euler(0f, angle, 0f);
 
             Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-            rb.AddForce(moveDir * speed * 5f, ForceMode.Force);
+            
+           if (isGrounded) rb.AddForce(moveDir * speed * 5f, ForceMode.Force);
+           else rb.AddForce(moveDir * speed * 5f * airStrafeMultiplier, ForceMode.Force);
         }
     }
 
@@ -232,7 +233,7 @@ public class PlayerController : MonoBehaviour
 
 
         //step 2: hide player and make invulverable
-        //mesh.enabled = false;
+        transform.GetChild(0).gameObject.SetActive(false);
         vulverable = false;
 
         //step 3: make sure blink is going to be in correct direction
@@ -243,7 +244,10 @@ public class PlayerController : MonoBehaviour
         if (Physics.Raycast(transform.position, transform.forward, out hit, blinkDistance))
         {
             //shorten distance so that you stop in front of obstacle
-            adjustedDistance = blinkDistance; //placeholder value
+            adjustedDistance = hit.distance - 1f;
+
+            //ensure player doesn't go backwards
+            if (adjustedDistance < 0) adjustedDistance = 0;
 
             //hit.distance - distance from player to collision
             //hit.point - impact point in world space
@@ -258,14 +262,14 @@ public class PlayerController : MonoBehaviour
 
         //step 6: freeze player wait for small amount of time so that dash is not instant
         //rb.constraints = RigidbodyConstraints.FreezePosition;
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.05f);
 
         //step 7: if player went max blink distance, restore velocity
         if (adjustedDistance != blinkDistance)
             rb.linearVelocity = new Vector3(0,0,0);
 
         //step 8: show player and make vulnerable and unfreeze
-        //mesh.enabled = true;
+        transform.GetChild(0).gameObject.SetActive(true);
         //rb.constraints = RigidbodyConstraints.None;
         //rb.constraints = RigidbodyConstraints.FreezeRotation;
         vulverable = true;
@@ -319,14 +323,6 @@ public class PlayerController : MonoBehaviour
     {
         Health -= damage;
         //healthSlider.value = Health;
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag == "WinTrigger")
-        {
-            SceneManager.LoadScene("Win Scene");
-        }
     }
 
     IEnumerator Wait()
