@@ -205,6 +205,19 @@ public class GameManager : MonoBehaviour
     {
         SceneChanger.instance.ChangeScene(0);
     }
+    
+    public bool isSewerComplete()
+    {
+        return sewerComplete;
+    }
 
+    public bool isAlleyComplete()
+    {
+        return alleyComplete;
+    }
 
+    public bool isRoofComplete()
+    {
+        return roofComplete;
+    }
 }
