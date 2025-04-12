@@ -65,7 +65,7 @@ public class GameManager : MonoBehaviour
                 levelNumber = 0;
                 sceneType = 1;
                 break;
-            case "Hub": //placeholder
+            case "Hub":
                 levelNumber = 0;
                 sceneType = 2;
                 break;
@@ -73,7 +73,7 @@ public class GameManager : MonoBehaviour
                 levelNumber = 1;
                 sceneType = 3;
                 break;
-            case "Alley": //placeholder
+            case "Alley":
                 levelNumber = 2;
                 sceneType = 3;
                 break;
@@ -126,6 +126,9 @@ public class GameManager : MonoBehaviour
     void HubStart()
     {
         //get gameobjects of all lights
+        sewerLight = GameObject.Find("Sewer Light");
+        alleyLight = GameObject.Find("Sewer Light");
+        roofLight = GameObject.Find("Sewer Light");
 
         //update lights
         if (sewerComplete)
