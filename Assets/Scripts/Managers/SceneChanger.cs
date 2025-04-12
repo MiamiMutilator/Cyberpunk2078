@@ -22,16 +22,16 @@ public class SceneChanger : MonoBehaviour
                 SceneManager.LoadSceneAsync("Main Menu");
                 break;
             case 2:
-                SceneManager.LoadSceneAsync("hub"); //placeholder
+                SceneManager.LoadSceneAsync("Hub");
                 break;
             case 3:
                 SceneManager.LoadSceneAsync("Sewer");
                 break;
             case 4:
-                SceneManager.LoadSceneAsync("alley"); //placeholder
+                SceneManager.LoadSceneAsync("Alley");
                 break;
             case 5:
-                SceneManager.LoadSceneAsync("roof"); //placeholder
+                SceneManager.LoadSceneAsync("Rooftops");
                 break;
             case 6:
                 SceneManager.LoadSceneAsync("Win Scene");
