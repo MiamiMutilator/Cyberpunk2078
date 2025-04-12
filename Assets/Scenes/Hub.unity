@@ -1071,15 +1071,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8868284022506842154, guid: c3ec6f3d1d027cd459aadbe0936384a9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -89.683815
+      value: -98.69
       objectReference: {fileID: 0}
     - target: {fileID: 8868284022506842154, guid: c3ec6f3d1d027cd459aadbe0936384a9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.55
+      value: 12.42
       objectReference: {fileID: 0}
     - target: {fileID: 8868284022506842154, guid: c3ec6f3d1d027cd459aadbe0936384a9, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.20377827
+      value: -19.77
       objectReference: {fileID: 0}
     - target: {fileID: 8868284022506842154, guid: c3ec6f3d1d027cd459aadbe0936384a9, type: 3}
       propertyPath: m_LocalRotation.w
@@ -5023,7 +5023,7 @@ Transform:
   m_GameObject: {fileID: 471835322}
   serializedVersion: 2
   m_LocalRotation: {x: 0.38268343, y: -1.2916476e-10, z: 5.3620934e-11, w: 0.92387956}
-  m_LocalPosition: {x: -89.683815, y: 3.05, z: -2.2962217}
+  m_LocalPosition: {x: -98.69, y: 14.92, z: -22.27}
   m_LocalScale: {x: 2.7324, y: 2.7324, z: 2.7324}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -18581,7 +18581,7 @@ Transform:
   m_GameObject: {fileID: 1262344390}
   serializedVersion: 2
   m_LocalRotation: {x: 0.38268343, y: -1.291052e-10, z: 5.3477122e-11, w: 0.92387956}
-  m_LocalPosition: {x: -89.683815, y: 3.05, z: -2.2962217}
+  m_LocalPosition: {x: -98.69, y: 14.92, z: -22.27}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -27377,6 +27377,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2066845667}
   - component: {fileID: 2066845666}
+  - component: {fileID: 2066845668}
   m_Layer: 0
   m_Name: Sewer Loading Zone
   m_TagString: Untagged
@@ -27420,6 +27421,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2066845668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2066845665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cfbb3a79c2a57547a1fcb99cf378ca0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerTag: Player
 --- !u!43 &2068731165
 Mesh:
   m_ObjectHideFlags: 0
