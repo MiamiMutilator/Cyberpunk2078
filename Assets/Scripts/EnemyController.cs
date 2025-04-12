@@ -3,13 +3,12 @@ using UnityEngine.SceneManagement;
 
 public class EnemyController : MonoBehaviour
 {
+    public int maxHealth = 1;
+    int health;
 
     private void Start()
     {
-        /* levelname is placeholder, replace with the name of the level where you collect items to complete
-        if (SceneManager.GetActiveScene().name == levelname)
-            itemLevel = true;
-        */
+        health = maxHealth;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -22,8 +21,17 @@ public class EnemyController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("AttackBox"))
         {
-            Kill();
+            ChangeHealth(-1);
+            Debug.Log("collision");
         }
+    }
+
+    void ChangeHealth(int amount)
+    {
+        health += amount;
+
+        if (health <= 0)
+            Kill();
     }
 
     public void Kill()
@@ -31,6 +39,7 @@ public class EnemyController : MonoBehaviour
         if (GameManager.instance.IsItemLevel())
             DropItem();
 
+        Debug.Log("Kill function ran");
         Destroy(gameObject);
     }
 

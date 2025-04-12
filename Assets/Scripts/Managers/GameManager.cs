@@ -44,7 +44,7 @@ public class GameManager : MonoBehaviour
         health += amount;
 
         if (health > maxHealth) health = maxHealth;
-        //if (health <= 0) kill player
+        if (health <= 0) KillPlayer();
 
         //healthText.text = "Health: " + health;
         Debug.Log(health);
@@ -138,9 +138,9 @@ public class GameManager : MonoBehaviour
 
     void GameplayStart()
     {
-        //health = maxHealth;
+        health = maxHealth;
         //healthText.text = "Health: " + health;
-        //Debug.Log(health);
+        Debug.Log(health);
     }
 
     void WinLossStart()
@@ -201,7 +201,10 @@ public class GameManager : MonoBehaviour
         return itemCount >= ItemsNeeded;
     }
 
-    
+    void KillPlayer()
+    {
+        SceneChanger.instance.ChangeScene(0);
+    }
 
 
 }
