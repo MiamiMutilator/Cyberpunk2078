@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     [Header("Game Variables")]
     public float gravity = 9.81f; //default value, refer to inspector for current value
     public int maxHealth = 100; //default value, refer to inspector for current value
-    int health;
+    public int health;
     static bool sewerComplete, alleyComplete, roofComplete;
     int itemCount = 0;
     public int ItemsNeeded = 10;

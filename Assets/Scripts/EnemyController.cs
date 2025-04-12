@@ -14,8 +14,16 @@ public class EnemyController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "AttackBox")
+        //if (other.tag == "AttackBox")
+        //    Kill();
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("AttackBox"))
+        {
             Kill();
+        }
     }
 
     public void Kill()

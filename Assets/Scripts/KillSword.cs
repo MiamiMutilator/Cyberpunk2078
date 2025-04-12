@@ -14,11 +14,12 @@ public class KillSword : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        if (other.CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag("Enemy"))
         {
-            other.GetComponent<EnemyController>().Kill();
+            GetComponent<EnemyController>().Kill();
         }
     }
+
 }
