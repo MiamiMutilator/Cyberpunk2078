@@ -13,13 +13,13 @@ public class EnemyController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        //if (other.tag == "AttackBox")
-        //    Kill();
+        if (other.tag == "AttackBox")
+            Kill();
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("AttackBox"))
+        if (collision.gameObject.CompareTag("Sword"))
         {
             ChangeHealth(-1);
             Debug.Log("collision");

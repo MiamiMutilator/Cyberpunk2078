@@ -122,7 +122,7 @@ public class PlayerController : MonoBehaviour
 
         //health and dodging
         {
-            if (Input.GetButton("Vertical") && isGrounded == true || Input.GetButton("Horizontal") && isGrounded == true)
+            if (Input.GetButton("Vertical") && isGrounded == true || Input.GetButton("Horizontal") && isGrounded == true || Input.GetAxis("Vertical") > .1f && isGrounded == true || Input.GetAxis("Horizontal") > .1f && isGrounded == true || Input.GetAxis("Vertical") < -.1f && isGrounded == true || Input.GetAxis("Horizontal") < -.1f && isGrounded == true || Input.GetAxis("Vertical") < -.1f && Input.GetAxis("Horizontal") < -.1f && isGrounded == true)
             {
                 isMoving = true;
             }
@@ -154,11 +154,13 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetBool("Run", true);
             animator.SetBool("Idle", false);
+            isMoving = true;
         }
         else
         {
             animator.SetBool("Run", false);
             animator.SetBool("Idle", true);
+            isMoving = false;
         }
 
         
@@ -185,7 +187,8 @@ public class PlayerController : MonoBehaviour
                 //velocity.y = Mathf.Sqrt(jumpHeight * -2 * gravity);
                 //Debug.Log("Jumped");
                 jumpNumber++;
-                animator.SetBool("Jump", true);
+                //animator.SetBool("Jump", true);
+                animator.SetTrigger("Double Jump");
                 StartCoroutine(Wait());
             }
         }
@@ -298,6 +301,7 @@ public class PlayerController : MonoBehaviour
         {
             UpdateHealth(damage);
             audioSource.PlayOneShot(bulletHit);
+            GameManager.instance.UpdateHealth(-15);
         }
         if (rngShoot >= 2)
         {

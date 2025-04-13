@@ -43,7 +43,7 @@ public class Shoot : MonoBehaviour
         if(playerHealth != null)
         {
             playerHealth.Damage(-15);
-            GameManager.instance.UpdateHealth(-15);
+            //GameManager.instance.UpdateHealth(-15);
         }
         else if (playerHealth == null)
         {

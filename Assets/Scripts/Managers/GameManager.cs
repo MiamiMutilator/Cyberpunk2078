@@ -26,13 +26,18 @@ public class GameManager : MonoBehaviour
     public TMP_Text itemCountText;
     public TMP_Text warningText;
 
+    //Animation for taking damage
+    private Animator anim;
+
+
     private void Awake()
     {
         instance = this;
     }
 
     private void Start()
-    { 
+    {
+        anim = GameObject.FindWithTag("Player").GetComponent<Animator>();
         SceneCheck();
         StartScene();
 
@@ -45,6 +50,11 @@ public class GameManager : MonoBehaviour
 
         if (health > maxHealth) health = maxHealth;
         if (health <= 0) KillPlayer();
+
+        if (amount < 0)
+        {
+            anim.SetTrigger("Hurt");
+        }
 
         //healthText.text = "Health: " + health;
         Debug.Log(health);

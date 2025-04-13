@@ -3607,6 +3607,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Game Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 328427826032737259, guid: e06f247fed174fc4b806976842585699, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4597737447915192936, guid: e06f247fed174fc4b806976842585699, type: 3}
       propertyPath: ItemsNeeded
       value: 8
@@ -11193,6 +11197,7 @@ MonoBehaviour:
   m_Script: {fileID: 1036102949}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Entries: []
 --- !u!4 &954315461
 Transform:
   m_ObjectHideFlags: 19

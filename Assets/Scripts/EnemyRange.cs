@@ -2,10 +2,11 @@ using UnityEngine;
 
 public class EnemyRange : MonoBehaviour
 {
+    private Shoot shootScript;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        shootScript = GetComponentInParent<Shoot>();
     }
 
     // Update is called once per frame
@@ -22,7 +23,8 @@ public class EnemyRange : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            GetComponent<Shoot>().enabled = true;
+            //GetComponent<Shoot>().enabled = true;
+            shootScript.enabled = enabled;
         }
     }
 
@@ -30,7 +32,9 @@ public class EnemyRange : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            GetComponent<Shoot>().enabled = false;
+            //GetComponent<Shoot>().enabled = false;
+            shootScript.enabled = false;
+
         }
     }
 }

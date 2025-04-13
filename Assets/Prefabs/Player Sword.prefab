@@ -261,7 +261,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 4b01b114a6e8c414792005b74355979b, type: 3}
       propertyPath: m_Name
-      value: Player 1
+      value: Player Sword
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 4b01b114a6e8c414792005b74355979b, type: 3}
       propertyPath: m_Layer
@@ -709,7 +709,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 3e3ec071366075b42ac1f322df61dfa8, type: 3}
       propertyPath: m_TagString
-      value: AttackBox
+      value: Sword
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
