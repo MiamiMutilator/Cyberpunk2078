@@ -4,6 +4,7 @@ public class CheatMenu : MonoBehaviour
 {
     static bool infJump, infDash, invincible, doubleSpeed;
     public static CheatMenu instance;
+    public GameObject player;
 
     private void Awake()
     {
@@ -35,7 +36,7 @@ public class CheatMenu : MonoBehaviour
 
         if (GameManager.instance.IsGameplayLevel())
         {
-            GameObject.Find("Player").GetComponent<PlayerController>().HandleSpeedCheat();
+            player.GetComponent<PlayerController>().HandleSpeedCheat();
         }
     }
 
