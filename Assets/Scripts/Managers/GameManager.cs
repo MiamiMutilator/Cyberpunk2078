@@ -46,6 +46,8 @@ public class GameManager : MonoBehaviour
 
     public void UpdateHealth(int amount)
     {
+        if (CheatMenu.instance.GetInvincibilityCheatStatus())
+            return;
         health += amount;
 
         if (health > maxHealth) health = maxHealth;
@@ -237,5 +239,10 @@ public class GameManager : MonoBehaviour
     public bool AllLevelsComplete()
     {
         return (sewerComplete && alleyComplete && roofComplete);
+    }
+
+    public bool IsGameplayLevel()
+    {
+        return (sceneType == 3);
     }
 }
