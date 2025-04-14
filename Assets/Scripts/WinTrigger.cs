@@ -17,8 +17,13 @@ public class WinTrigger : MonoBehaviour
                     return;
                 }
             }
-            
-            GameManager.instance.CompleteLevel();
+            else if (GameManager.instance.IsHub())
+            {
+                if (GameManager.instance.AllLevelsComplete())
+                    GameManager.instance.WinGame();
+            }
+
+                GameManager.instance.CompleteLevel();
         }
     }
 

@@ -247,6 +247,16 @@ public class GameManager : MonoBehaviour
         return (sceneType == 3 || sceneType == 2);
     }
 
+    public bool IsHub()
+    {
+        return (sceneType == 2);
+    }
+
+    public void WinGame()
+    {
+        SceneChanger.instance.ChangeScene(6);
+    }
+
     void UpdateHealthUI()
     {
         healthText.text = "Health: " + health;
