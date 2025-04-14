@@ -6,6 +6,8 @@ public class EnemyController : MonoBehaviour
     public int maxHealth = 1;
     int health;
 
+    public bool isDead = false;
+
     private void Start()
     {
         health = maxHealth;
@@ -40,6 +42,7 @@ public class EnemyController : MonoBehaviour
             DropItem();
 
         Debug.Log("Kill function ran");
+        isDead = true;
         Destroy(gameObject);
     }
 
