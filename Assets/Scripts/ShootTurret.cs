@@ -9,9 +9,9 @@ public class ShootTurret : MonoBehaviour
     public bool fired = false;
     public int fireCooldown = 3;
 
-    private LookAtPlayerInstant lookScript;
+    //private LookAtPlayerInstant lookScript;
 
-    public Transform Player;
+    //public Transform Player;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -37,7 +37,7 @@ public class ShootTurret : MonoBehaviour
     {
         fired = true;
         RaycastHit hit;
-        Player.LookAt(Player);
+        //Player.LookAt(Player);
 
         if (Physics.Raycast(FirePoint.position, transform.TransformDirection(Vector3.forward), out hit, 100f))
         {
