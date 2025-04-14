@@ -58,7 +58,7 @@ public class GameManager : MonoBehaviour
             anim.SetTrigger("Hurt");
         }
 
-        //healthText.text = "Health: " + health;
+        UpdateHealthUI();
         Debug.Log(health);
     }
 
@@ -154,7 +154,7 @@ public class GameManager : MonoBehaviour
     void GameplayStart()
     {
         health = maxHealth;
-        //healthText.text = "Health: " + health;
+        UpdateHealthUI();
         Debug.Log(health);
     }
 
@@ -245,5 +245,10 @@ public class GameManager : MonoBehaviour
     public bool IsPlayerLevel()
     {
         return (sceneType == 3 || sceneType == 2);
+    }
+
+    void UpdateHealthUI()
+    {
+        healthText.text = "Health: " + health;
     }
 }
