@@ -3925,6 +3925,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4597737447915192936, guid: e06f247fed174fc4b806976842585699, type: 3}
+      propertyPath: healthText
+      value: 
+      objectReference: {fileID: 958498264}
+    - target: {fileID: 4597737447915192936, guid: e06f247fed174fc4b806976842585699, type: 3}
       propertyPath: ItemsNeeded
       value: 8
       objectReference: {fileID: 0}
@@ -28507,7 +28511,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2126316114
 Transform:
   m_ObjectHideFlags: 0
