@@ -34,7 +34,7 @@ public class CheatMenu : MonoBehaviour
     {
         doubleSpeed = !doubleSpeed;
 
-        if (GameManager.instance.IsGameplayLevel())
+        if (GameManager.instance.IsPlayerLevel())
         {
             player.GetComponent<PlayerController>().HandleSpeedCheat();
         }

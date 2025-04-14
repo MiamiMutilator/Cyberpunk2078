@@ -139,8 +139,8 @@ public class GameManager : MonoBehaviour
     {
         //get gameobjects of all lights
         sewerLight = GameObject.Find("Sewer Light");
-        alleyLight = GameObject.Find("Sewer Light");
-        roofLight = GameObject.Find("Sewer Light");
+        alleyLight = GameObject.Find("Alley Light");
+        roofLight = GameObject.Find("Rooftop Light");
 
         //update lights
         if (sewerComplete)
@@ -179,6 +179,7 @@ public class GameManager : MonoBehaviour
     public void CompleteLevel()
     {
         //sewer is level 1, alley is level 2, roof is level 3
+        Debug.Log(levelNumber);
         switch (levelNumber)
         {
             case -1:
@@ -241,8 +242,8 @@ public class GameManager : MonoBehaviour
         return (sewerComplete && alleyComplete && roofComplete);
     }
 
-    public bool IsGameplayLevel()
+    public bool IsPlayerLevel()
     {
-        return (sceneType == 3);
+        return (sceneType == 3 || sceneType == 2);
     }
 }
