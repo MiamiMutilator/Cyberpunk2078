@@ -46,6 +46,8 @@ public class GameManager : MonoBehaviour
 
     public void UpdateHealth(int amount)
     {
+        if (CheatMenu.instance.GetInvincibilityCheatStatus())
+            return;
         health += amount;
 
         if (health > maxHealth) health = maxHealth;
@@ -56,7 +58,7 @@ public class GameManager : MonoBehaviour
             anim.SetTrigger("Hurt");
         }
 
-        //healthText.text = "Health: " + health;
+        UpdateHealthUI();
         Debug.Log(health);
     }
 
@@ -137,8 +139,8 @@ public class GameManager : MonoBehaviour
     {
         //get gameobjects of all lights
         sewerLight = GameObject.Find("Sewer Light");
-        alleyLight = GameObject.Find("Sewer Light");
-        roofLight = GameObject.Find("Sewer Light");
+        alleyLight = GameObject.Find("Alley Light");
+        roofLight = GameObject.Find("Rooftop Light");
 
         //update lights
         if (sewerComplete)
@@ -152,7 +154,7 @@ public class GameManager : MonoBehaviour
     void GameplayStart()
     {
         health = maxHealth;
-        //healthText.text = "Health: " + health;
+        UpdateHealthUI();
         Debug.Log(health);
     }
 
@@ -177,6 +179,7 @@ public class GameManager : MonoBehaviour
     public void CompleteLevel()
     {
         //sewer is level 1, alley is level 2, roof is level 3
+        Debug.Log(levelNumber);
         switch (levelNumber)
         {
             case -1:
@@ -237,5 +240,15 @@ public class GameManager : MonoBehaviour
     public bool AllLevelsComplete()
     {
         return (sewerComplete && alleyComplete && roofComplete);
+    }
+
+    public bool IsPlayerLevel()
+    {
+        return (sceneType == 3 || sceneType == 2);
+    }
+
+    void UpdateHealthUI()
+    {
+        healthText.text = "Health: " + health;
     }
 }

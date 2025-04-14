@@ -2,32 +2,61 @@ using UnityEngine;
 
 public class CheatMenu : MonoBehaviour
 {
-    static bool infAmmoStatus, invincibilityStatus;
+    static bool infJump, infDash, invincible, doubleSpeed;
     public static CheatMenu instance;
+    public GameObject player;
 
     private void Awake()
     {
         instance = this;
     }
 
-    // This method toggles the speed cheat on and off.
-    public void ToggleAmmoCheat()
+    [ContextMenu("Toggle Jump Cheat")]
+    public void ToggleJumpCheat()
     {
-        infAmmoStatus = !infAmmoStatus;
+        infJump = !infJump;
     }
 
+    [ContextMenu("Toggle Invincibility Cheat")]
     public void ToggleInvincibilityCheat()
     {
-        invincibilityStatus = !invincibilityStatus;
+        invincible = !invincible;
     }
 
-    public bool GetAmmoCheatStatus()
+    [ContextMenu("Toggle Dash Cheat")]
+    public void ToggleDashCheat()
     {
-        return infAmmoStatus;
+        infDash = !infDash;
+    }
+
+    [ContextMenu("Toggle Speed Cheat")]
+    public void ToggleSpeedCheat()
+    {
+        doubleSpeed = !doubleSpeed;
+
+        if (GameManager.instance.IsPlayerLevel())
+        {
+            player.GetComponent<PlayerController>().HandleSpeedCheat();
+        }
+    }
+
+    public bool GetJumpCheatStatus()
+    {
+        return infJump;
     }
 
     public bool GetInvincibilityCheatStatus()
     {
-        return invincibilityStatus;
+        return invincible;
+    }
+
+    public bool GetDashCheatStatus()
+    {
+        return infDash;
+    }
+
+    public bool GetSpeedCheatStatus()
+    {
+        return doubleSpeed;
     }
 }

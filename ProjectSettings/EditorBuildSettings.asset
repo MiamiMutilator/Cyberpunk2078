@@ -15,6 +15,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Sewer.unity
     guid: d4b63e6067e7cb64f84c3d052f0ba6d2
   - enabled: 1
+    path: Assets/Scenes/Alley.unity
+    guid: 98c7c44d47570334798825d482ab5eff
+  - enabled: 1
     path: Assets/Scenes/Rooftops.unity
     guid: 26130be273406dd4ea5624a9f1fce14b
   - enabled: 1
