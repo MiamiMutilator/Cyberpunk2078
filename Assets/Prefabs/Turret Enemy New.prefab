@@ -189,7 +189,6 @@ GameObject:
   - component: {fileID: 3738657442273714858}
   - component: {fileID: 4551038499324360481}
   - component: {fileID: 4004104248163882739}
-  - component: {fileID: 2335133225351583640}
   - component: {fileID: 6636689222923240337}
   m_Layer: 0
   m_Name: Turret Enemy New
@@ -347,19 +346,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 0}
---- !u!114 &2335133225351583640
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5297421321678827478}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ddc265d155f41fa48b053f1238c031a8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 0
 --- !u!114 &6636689222923240337
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -373,6 +359,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 1
+  isDead: 0
 --- !u!1 &5395101514333865173
 GameObject:
   m_ObjectHideFlags: 0
