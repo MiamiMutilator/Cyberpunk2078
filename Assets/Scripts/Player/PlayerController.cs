@@ -68,6 +68,7 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         canBlink = true;
+        Input.ResetInputAxes();
     }
 
     private void Start()
@@ -155,6 +156,7 @@ public class PlayerController : MonoBehaviour
 
     void MyInput()
     {
+
         //walk
         horizontal = Input.GetAxisRaw("Horizontal");
         vertical = Input.GetAxisRaw("Vertical");
@@ -205,7 +207,7 @@ public class PlayerController : MonoBehaviour
     }
 
     void MovePlayer()
-    {
+    {  
         Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
 
         if (direction.magnitude >= 0.1f)
