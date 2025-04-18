@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        anim = GameObject.FindWithTag("Player").GetComponent<Animator>();
+        
         SceneCheck();
         StartScene();
 
@@ -137,6 +137,9 @@ public class GameManager : MonoBehaviour
     }
     void HubStart()
     {
+        //setup player animation
+        anim = GameObject.FindWithTag("Player").GetComponent<Animator>();
+
         //get gameobjects of all lights
         sewerLight = GameObject.Find("Sewer Light");
         alleyLight = GameObject.Find("Alley Light");
@@ -153,6 +156,10 @@ public class GameManager : MonoBehaviour
 
     void GameplayStart()
     {
+        //setup player animation
+        anim = GameObject.FindWithTag("Player").GetComponent<Animator>();
+
+        //setup health
         health = maxHealth;
         UpdateHealthUI();
         Debug.Log(health);
@@ -245,6 +252,16 @@ public class GameManager : MonoBehaviour
     public bool IsPlayerLevel()
     {
         return (sceneType == 3 || sceneType == 2);
+    }
+
+    public bool IsHub()
+    {
+        return (sceneType == 2);
+    }
+
+    public void WinGame()
+    {
+        SceneChanger.instance.ChangeScene(6);
     }
 
     void UpdateHealthUI()

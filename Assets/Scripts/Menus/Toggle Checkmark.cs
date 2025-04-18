@@ -11,7 +11,7 @@ public class ToggleCheckmark : MonoBehaviour
 
     void Start()
     {
-        if (jumpCheck) 
+        if (jumpCheck)
         {
             if (CheatMenu.instance.GetJumpCheatStatus()) ToggleCheckmarkVisibility();
         }

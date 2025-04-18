@@ -11010,14 +11010,17 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1838284278260870228, guid: cf84f56222bcb004099eb04df6588b0c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 504250157}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 569071143123871753, guid: cf84f56222bcb004099eb04df6588b0c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 818499443}
   m_SourcePrefab: {fileID: 100100000, guid: cf84f56222bcb004099eb04df6588b0c, type: 3}
 --- !u!114 &818499438 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7154353996916380488, guid: cf84f56222bcb004099eb04df6588b0c, type: 3}
   m_PrefabInstance: {fileID: 818499437}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 818499442}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d828029ff6919114da012099e480b29f, type: 3}
@@ -11038,6 +11041,27 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3271177394458942809, guid: cf84f56222bcb004099eb04df6588b0c, type: 3}
   m_PrefabInstance: {fileID: 818499437}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &818499442 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 569071143123871753, guid: cf84f56222bcb004099eb04df6588b0c, type: 3}
+  m_PrefabInstance: {fileID: 818499437}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &818499443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 818499442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7c6eb0d2f36b274a939bda8cef511b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jumpUI: {fileID: 282456353}
+  dashUI: {fileID: 1282053904}
+  invinUI: {fileID: 117916715}
+  speedUI: {fileID: 2102386380}
 --- !u!1 &825221691 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4675421458819475994, guid: 012c9f42e1a74fc438548f1bece9243f, type: 3}
@@ -25355,7 +25379,7 @@ MonoBehaviour:
   uiImage: {fileID: 117916715}
   jumpCheck: 0
   dashCheck: 0
-  invinCheck: 0
+  invinCheck: 1
   speedCheck: 0
 --- !u!114 &1978469423
 MonoBehaviour:
