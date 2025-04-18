@@ -7,9 +7,12 @@ public class Shoot : MonoBehaviour
 {
     public Transform FirePoint;
     public bool fired = false;
+    public int fireCooldown = 3;
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        
         fired = false;
     }
 
@@ -29,7 +32,7 @@ public class Shoot : MonoBehaviour
         fired = true;
         RaycastHit hit;
 
-        if(Physics.Raycast(FirePoint.position, transform.TransformDirection(Vector3.forward), out hit, 100))
+        if(Physics.Raycast(FirePoint.position, transform.TransformDirection(Vector3.forward), out hit, 100f))
         {
             Debug.DrawRay(FirePoint.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
         }
@@ -40,10 +43,11 @@ public class Shoot : MonoBehaviour
         if(playerHealth != null)
         {
             playerHealth.Damage(-15);
+            //GameManager.instance.UpdateHealth(-15);
         }
         else if (playerHealth == null)
         {
-            fired = false;
+            fired = true;
             //Debug.Log("Nothing");
         }
         StartCoroutine(shootCooldown());
@@ -53,7 +57,7 @@ public class Shoot : MonoBehaviour
 
     IEnumerator shootCooldown()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(fireCooldown);
         fired = false;
         yield break;
 

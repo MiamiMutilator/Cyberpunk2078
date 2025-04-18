@@ -12,11 +12,13 @@ public class PlayerController : MonoBehaviour
 {
     public Transform cam;
 
-    public float speed = 6;
+    public float baseSpeed = 6;
     public float jumpHeight = 3;
     public float airStrafeMultiplier = 0.5f;
     public bool isGrounded;
     public bool jumped;
+    float speed;
+    bool canDoubleJump;
 
     public float jumpNumber;
 
@@ -32,8 +34,8 @@ public class PlayerController : MonoBehaviour
     bool vulverable;
     [SerializeField] float blinkDistance = 5f;
     [SerializeField] float blinkCooldown = 1f;
-    public KeyCode blinkKeyboard = KeyCode.C;
-    public KeyCode blinkController = KeyCode.Joystick1Button2;
+    KeyCode blinkKeyboard = KeyCode.C;
+    KeyCode blinkController = KeyCode.JoystickButton1;
     float blinkTimer;
     bool canBlink;
     float horizontal, vertical;
@@ -60,7 +62,7 @@ public class PlayerController : MonoBehaviour
 
     //animations
     private Animator animator;
-    
+
 
     private void Awake()
     {
@@ -74,8 +76,15 @@ public class PlayerController : MonoBehaviour
         rngSeed = Random.Range(1, 101);
         audioSource = GetComponent<AudioSource>();
 
+        //set speed
+        speed = baseSpeed;
+        HandleSpeedCheat();
+
         //find camera
         cam = GameObject.Find("Main Camera").GetComponent<Transform>();
+
+        //set double jump
+        canDoubleJump = true;
 
         //find health slider
         //healthSlider = GameObject.Find("Slider").GetComponent<Slider>();
@@ -122,7 +131,7 @@ public class PlayerController : MonoBehaviour
 
         //health and dodging
         {
-            if (Input.GetButton("Vertical") && isGrounded == true || Input.GetButton("Horizontal") && isGrounded == true)
+            if (Input.GetButton("Vertical") && isGrounded == true || Input.GetButton("Horizontal") && isGrounded == true || Input.GetAxis("Vertical") > .1f && isGrounded == true || Input.GetAxis("Horizontal") > .1f && isGrounded == true || Input.GetAxis("Vertical") < -.1f && isGrounded == true || Input.GetAxis("Horizontal") < -.1f && isGrounded == true || Input.GetAxis("Vertical") < -.1f && Input.GetAxis("Horizontal") < -.1f && isGrounded == true)
             {
                 isMoving = true;
             }
@@ -150,18 +159,22 @@ public class PlayerController : MonoBehaviour
         horizontal = Input.GetAxisRaw("Horizontal");
         vertical = Input.GetAxisRaw("Vertical");
 
-        if (Input.GetButton("Horizontal") || Input.GetButton("Vertical"))
+        if (Input.GetButton("Horizontal") || Input.GetButton("Vertical") || Input.GetAxis("Vertical") > .1f || Input.GetAxis("Horizontal") > .1f || Input.GetAxis("Vertical") < -.1f || Input.GetAxis("Horizontal") < -.1f || Input.GetAxis("Vertical") < -.1f && Input.GetAxis("Horizontal") < -.1f)
         {
             animator.SetBool("Run", true);
             animator.SetBool("Idle", false);
+            isMoving = true;
         }
         else
         {
             animator.SetBool("Run", false);
             animator.SetBool("Idle", true);
+            isMoving = false;
         }
 
-        if ((Input.GetKeyDown(blinkKeyboard) || Input.GetKeyDown(blinkController)) && canBlink)
+
+
+        if ((Input.GetKeyDown(blinkKeyboard) || Input.GetKeyDown(blinkController)) && (canBlink || CheatMenu.instance.GetDashCheatStatus()))
             StartCoroutine(Blink());
         else
         {
@@ -176,14 +189,16 @@ public class PlayerController : MonoBehaviour
                 jumped = true;
                 StartCoroutine(Wait());
             }
-            if (Input.GetButtonDown("Jump") && isGrounded == false && jumpNumber != 1)
+            else if (Input.GetButtonDown("Jump") && isGrounded == false && (jumpNumber <= 1 || CheatMenu.instance.GetJumpCheatStatus()) && canDoubleJump)
             {
                 audioSource.PlayOneShot(jumpSound);
                 rb.linearVelocity = new Vector3(rb.linearVelocity.x, jumpHeight * 3f, rb.linearVelocity.z);
                 //velocity.y = Mathf.Sqrt(jumpHeight * -2 * gravity);
                 //Debug.Log("Jumped");
-                jumpNumber++;
-                animator.SetBool("Jump", true);
+                jumpNumber = 2;
+                //animator.SetBool("Jump", true);
+                animator.SetTrigger("Double Jump");
+                canDoubleJump = false;
                 StartCoroutine(Wait());
             }
         }
@@ -200,9 +215,9 @@ public class PlayerController : MonoBehaviour
             transform.rotation = Quaternion.Euler(0f, angle, 0f);
 
             Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-            
-           if (isGrounded) rb.AddForce(moveDir * speed * 5f, ForceMode.Force);
-           else rb.AddForce(moveDir * speed * 5f * airStrafeMultiplier, ForceMode.Force);
+
+            if (isGrounded) rb.AddForce(moveDir * speed * 5f, ForceMode.Force);
+            else rb.AddForce(moveDir * speed * 5f * airStrafeMultiplier, ForceMode.Force);
         }
     }
 
@@ -228,6 +243,7 @@ public class PlayerController : MonoBehaviour
         canBlink = false;
         blinkTimer = blinkCooldown;
         audioSource.PlayOneShot(dashSound);
+        LayerMask mask = LayerMask.GetMask("Ground");
 
         //step 1: record player velocity & freeze player SKIP
 
@@ -241,7 +257,7 @@ public class PlayerController : MonoBehaviour
         Debug.DrawRay(transform.position, forward, Color.blue, 3f);
 
         //step 4: check if blink can go max distance
-        if (Physics.Raycast(transform.position, transform.forward, out hit, blinkDistance))
+        if (Physics.Raycast(transform.position, transform.forward, out hit, blinkDistance, mask))
         {
             //shorten distance so that you stop in front of obstacle
             adjustedDistance = hit.distance - 1f;
@@ -256,7 +272,10 @@ public class PlayerController : MonoBehaviour
 
         //step 4.5: calculate new position after blink
         Vector3 finalBlinkPosition = transform.position + new Vector3(transform.forward.x * adjustedDistance, transform.forward.y * adjustedDistance, transform.forward.z * adjustedDistance);
-        
+
+        //step 4.6: attack enemies in dash path
+        DashAttack(adjustedDistance);
+
         //step 5: move player based on distance from step 4
         rb.position = finalBlinkPosition;
 
@@ -266,7 +285,7 @@ public class PlayerController : MonoBehaviour
 
         //step 7: if player went max blink distance, restore velocity
         if (adjustedDistance != blinkDistance)
-            rb.linearVelocity = new Vector3(0,0,0);
+            rb.linearVelocity = new Vector3(0, 0, 0);
 
         //step 8: show player and make vulnerable and unfreeze
         transform.GetChild(0).gameObject.SetActive(true);
@@ -292,6 +311,7 @@ public class PlayerController : MonoBehaviour
         {
             UpdateHealth(damage);
             audioSource.PlayOneShot(bulletHit);
+            GameManager.instance.UpdateHealth(-15);
         }
         if (rngShoot >= 2)
         {
@@ -330,6 +350,47 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(1);
         animator.SetBool("Jump", false);
         animator.SetBool("Idle", true);
+        canDoubleJump = true;
         yield break;
+    }
+
+    void DashAttack(float length)
+    {
+        GameObject player = GameObject.Find("Player");
+
+
+        GameObject attack = GameObject.CreatePrimitive(PrimitiveType.Cube);
+
+        //decouple from player
+        attack.transform.parent = null;
+
+        //set size and position and rotation
+        attack.transform.localScale = new Vector3(length, 3f, 0.5f);
+        attack.transform.position = player.transform.position; //move to player position
+        attack.transform.Translate(player.transform.forward * (length / 2)); //move to halfway past player
+        attack.transform.rotation = player.transform.rotation; //rotate to same as player
+        attack.transform.Rotate(0, -90, 0);    //rotate again to correct angle
+
+
+        //make invisible
+        attack.GetComponent<Renderer>().enabled = false;
+        //make trigger
+        attack.GetComponent<Collider>().isTrigger = true;
+        //give it attack tag
+        attack.tag = "AttackBox";
+        //assign its script
+        attack.AddComponent<AttackBox>();
+    }
+
+    public void HandleSpeedCheat()
+    {
+        if (CheatMenu.instance.GetSpeedCheatStatus())
+        {
+            speed = baseSpeed * 2;
+        }
+        else
+            speed = baseSpeed;
+
+        Debug.Log(speed);
     }
 }

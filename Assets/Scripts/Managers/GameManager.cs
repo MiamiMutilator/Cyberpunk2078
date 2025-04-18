@@ -13,8 +13,8 @@ public class GameManager : MonoBehaviour
     [Header("Game Variables")]
     public float gravity = 9.81f; //default value, refer to inspector for current value
     public int maxHealth = 100; //default value, refer to inspector for current value
-    int health;
-    static bool sewerComplete, alleyComplete, roofComplete;
+    public int health;
+    public static bool sewerComplete, alleyComplete, roofComplete;
     int itemCount = 0;
     public int ItemsNeeded = 10;
 
@@ -22,13 +22,22 @@ public class GameManager : MonoBehaviour
     int sceneType; //1 is main menu, 2 is hub, 3 gameplay, 4 is win/loss
     GameObject sewerLight, alleyLight, roofLight;
 
+    [Header("Item UI")]
+    public TMP_Text itemCountText;
+    public TMP_Text warningText;
+
+    //Animation for taking damage
+    private Animator anim;
+
+
     private void Awake()
     {
         instance = this;
     }
 
     private void Start()
-    { 
+    {
+        
         SceneCheck();
         StartScene();
 
@@ -37,13 +46,20 @@ public class GameManager : MonoBehaviour
 
     public void UpdateHealth(int amount)
     {
+        if (CheatMenu.instance.GetInvincibilityCheatStatus())
+            return;
         health += amount;
 
         if (health > maxHealth) health = maxHealth;
-        //if (health <= 0) kill player
+        if (health <= 0) KillPlayer();
 
-        healthText.text = "Health: " + health;
-        //Debug.Log(health);
+        if (amount < 0)
+        {
+            anim.SetTrigger("Hurt");
+        }
+
+        UpdateHealthUI();
+        Debug.Log(health);
     }
 
     void SceneCheck()
@@ -61,7 +77,7 @@ public class GameManager : MonoBehaviour
                 levelNumber = 0;
                 sceneType = 1;
                 break;
-            case "Hub": //placeholder
+            case "Hub":
                 levelNumber = 0;
                 sceneType = 2;
                 break;
@@ -69,11 +85,11 @@ public class GameManager : MonoBehaviour
                 levelNumber = 1;
                 sceneType = 3;
                 break;
-            case "Alley": //placeholder
+            case "Alley":
                 levelNumber = 2;
                 sceneType = 3;
                 break;
-            case "Roof": //placeholder
+            case "Rooftops":
                 levelNumber = 3;
                 sceneType = 3;
                 break;
@@ -121,7 +137,13 @@ public class GameManager : MonoBehaviour
     }
     void HubStart()
     {
+        //setup player animation
+        anim = GameObject.FindWithTag("Player").GetComponent<Animator>();
+
         //get gameobjects of all lights
+        sewerLight = GameObject.Find("Sewer Light");
+        alleyLight = GameObject.Find("Alley Light");
+        roofLight = GameObject.Find("Rooftop Light");
 
         //update lights
         if (sewerComplete)
@@ -134,9 +156,13 @@ public class GameManager : MonoBehaviour
 
     void GameplayStart()
     {
-        //health = maxHealth;
-        //healthText.text = "Health: " + health;
-        //Debug.Log(health);
+        //setup player animation
+        anim = GameObject.FindWithTag("Player").GetComponent<Animator>();
+
+        //setup health
+        health = maxHealth;
+        UpdateHealthUI();
+        Debug.Log(health);
     }
 
     void WinLossStart()
@@ -147,12 +173,20 @@ public class GameManager : MonoBehaviour
     public void ItemCollect()
     {
         itemCount++;
+        UpdateItemUI();
         Debug.Log("Item Count: " + itemCount);
+    }
+
+    private void UpdateItemUI()
+    {
+        if (itemCountText != null)
+            itemCountText.text = $"Items: {itemCount}/{ItemsNeeded}";
     }
 
     public void CompleteLevel()
     {
         //sewer is level 1, alley is level 2, roof is level 3
+        Debug.Log(levelNumber);
         switch (levelNumber)
         {
             case -1:
@@ -175,27 +209,63 @@ public class GameManager : MonoBehaviour
                 break;
         }
 
-        SceneChanger.instance.ChangeScene(6); //swap to 2 once hub world is implemented
+        SceneChanger.instance.ChangeScene(2);
     }
 
     public bool IsItemLevel()
     {
-        //change if level with the items is not the alley
-        if (levelNumber == 2)
+        if (levelNumber == 3)
             return true;
         return false;
     }
 
     public bool HasEnoughItems()
     {
-        if (itemCount >= ItemsNeeded)
-            return true;
-        Debug.Log("Not Enough Items Collected");
-        Debug.LogFormat("Items Collected: {0}/{1}", itemCount, ItemsNeeded);
-        return false;
+        return itemCount >= ItemsNeeded;
     }
 
+    void KillPlayer()
+    {
+        SceneChanger.instance.ChangeScene(0);
+    }
     
+    public bool IsSewerComplete()
+    {
+        return sewerComplete;
+    }
 
+    public bool IsAlleyComplete()
+    {
+        return alleyComplete;
+    }
 
+    public bool IsRoofComplete()
+    {
+        return roofComplete;
+    }
+
+    public bool AllLevelsComplete()
+    {
+        return (sewerComplete && alleyComplete && roofComplete);
+    }
+
+    public bool IsPlayerLevel()
+    {
+        return (sceneType == 3 || sceneType == 2);
+    }
+
+    public bool IsHub()
+    {
+        return (sceneType == 2);
+    }
+
+    public void WinGame()
+    {
+        SceneChanger.instance.ChangeScene(6);
+    }
+
+    void UpdateHealthUI()
+    {
+        healthText.text = "Health: " + health;
+    }
 }

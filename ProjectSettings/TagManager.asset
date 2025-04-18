@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 3
   tags:
   - WinTrigger
+  - Enemy
+  - AttackBox
+  - Sword
   layers:
   - Default
   - TransparentFX
@@ -14,9 +17,9 @@ TagManager:
   - UI
   - Ground
   - CameraBlock
-  - 
-  - 
-  - 
+  - Player
+  - Sword
+  - Vision
   - 
   - 
   - 

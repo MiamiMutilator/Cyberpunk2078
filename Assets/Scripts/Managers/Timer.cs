@@ -32,7 +32,9 @@ public class Timer : MonoBehaviour
         {
             timer = 0;
             timerActive = false;
-            SceneChanger.instance.ChangeScene(7); //change to 2 once hub level is created
+            Scene currentScene = SceneManager.GetActiveScene();
+            SceneManager.LoadScene(currentScene.name);
+            // SceneChanger.instance.ChangeScene(7); //change to 2 once hub level is created
         }
     }
     
