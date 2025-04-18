@@ -29,6 +29,8 @@ public class PlayerController : MonoBehaviour
     float turnSmoothVelocity;
     public float turnSmoothTime = 0.1f;
 
+    public Transform playerCenter;
+
     Rigidbody rb;
     IEnumerator coroutine;
     bool vulverable;
@@ -245,7 +247,8 @@ public class PlayerController : MonoBehaviour
         canBlink = false;
         blinkTimer = blinkCooldown;
         audioSource.PlayOneShot(dashSound);
-        LayerMask mask = LayerMask.GetMask("Ground");
+        LayerMask mask = LayerMask.GetMask("Ground", "Wall");
+
 
         //step 1: record player velocity & freeze player SKIP
 
@@ -256,10 +259,10 @@ public class PlayerController : MonoBehaviour
 
         //step 3: make sure blink is going to be in correct direction
         Vector3 forward = transform.TransformDirection(Vector3.forward) * blinkDistance;
-        Debug.DrawRay(transform.position, forward, Color.blue, 3f);
+        Debug.DrawRay(playerCenter.transform.position, forward, Color.blue, 5f);
 
         //step 4: check if blink can go max distance
-        if (Physics.Raycast(transform.position, transform.forward, out hit, blinkDistance, mask))
+        if (Physics.Raycast(playerCenter.transform.position, transform.forward, out hit, blinkDistance, mask))
         {
             //shorten distance so that you stop in front of obstacle
             adjustedDistance = hit.distance - 1f;
