@@ -93,7 +93,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 4b01b114a6e8c414792005b74355979b, type: 3}
       propertyPath: m_Name
-      value: T-Pose
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 4b01b114a6e8c414792005b74355979b, type: 3}
       propertyPath: m_IsActive
@@ -202,7 +202,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!114 &407393570312888720
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -216,7 +216,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 0}
-  speed: 10
+  baseSpeed: 6
   jumpHeight: 3
   airStrafeMultiplier: 0.5
   isGrounded: 0
@@ -230,8 +230,6 @@ MonoBehaviour:
   turnSmoothTime: 0.1
   blinkDistance: 5
   blinkCooldown: 1
-  blinkKeyboard: 99
-  blinkController: 352
   groundDrag: 3
   Health: 100
   isMoving: 0
