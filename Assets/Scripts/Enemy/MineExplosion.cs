@@ -27,6 +27,8 @@ public class MineExplosion : MonoBehaviour
         }
     }
 
+    
+
 
     IEnumerator Wait()
     {

@@ -30,6 +30,18 @@ public class EnemyRangeMine : MonoBehaviour
         }
     }
 
+    //void LateUpdate()
+    //{
+    //    Vector3 direction = player.position - transform.position;
+    //    direction.y = 0f;
+
+    //    if (direction.sqrMagnitude > 0.001f)
+    //    {
+    //        Quaternion lookRotation = Quaternion.LookRotation(direction);
+    //        transform.rotation = lookRotation * Quaternion.Euler(0, -90f, 0); 
+    //    }
+    //}
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
