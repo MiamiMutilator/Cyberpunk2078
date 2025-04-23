@@ -51,7 +51,7 @@ public class EnemyController : MonoBehaviour
     {
         if (Random.Range(0, 10) >= 0)
         {
-            Vector3 enemyLocation = gameObject.transform.position;
+            Vector3 enemyLocation = gameObject.transform.position + Vector3.up * 1f;
             //GameObject item = Instantiate(Enemy, enemyLocation)
 
             GameObject item = Instantiate(itemPrefab, enemyLocation, Quaternion.identity);
