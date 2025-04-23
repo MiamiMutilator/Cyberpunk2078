@@ -1,12 +1,17 @@
 using UnityEngine;
 
-public class LookAtPlayerInstant : MonoBehaviour
+public class LookAtPlayerTurret : MonoBehaviour
 {
     public Transform Player;
+    public Transform tripod;
+    private Quaternion tripodWorldRotation;
+    //private Quaternion tripodInitialRotation;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         transform.LookAt(Player);
+        tripodWorldRotation = tripod.rotation;
+        //tripodInitialRotation = tripod.localRotation;
     }
 
     // Update is called once per frame
@@ -24,5 +29,7 @@ public class LookAtPlayerInstant : MonoBehaviour
         //Vector3 targetPos = Player.position;
         //targetPos.y = transform.position.y;
         //transform.LookAt(targetPos);
+        //tripod.localRotation = tripodInitialRotation;
+        tripod.rotation = tripodWorldRotation;
     }
 }
