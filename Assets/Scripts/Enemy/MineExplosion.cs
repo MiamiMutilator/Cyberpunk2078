@@ -6,9 +6,12 @@ public class MineExplosion : MonoBehaviour
     public GameObject Mine;
     public bool exploded;
     public GameObject explosionEffect;
+    private Animator anim;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        anim = GetComponent<Animator>();
+        anim.SetBool("MouseIdle", true);
         exploded = false;
     }
 
@@ -23,6 +26,8 @@ public class MineExplosion : MonoBehaviour
 
         }
     }
+
+    
 
 
     IEnumerator Wait()

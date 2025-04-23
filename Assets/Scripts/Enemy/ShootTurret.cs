@@ -2,24 +2,19 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-
 public class ShootTurret : MonoBehaviour
 {
     public Transform FirePoint;
     public bool fired = false;
     public int fireCooldown = 3;
 
-    //private LookAtPlayerInstant lookScript;
-
-    //public Transform Player;
+    private Transform player; // Reference to the player Transform
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
         fired = false;
-
-        //lookScript = GetComponent<LookAtPlayerInstant>();
+        player = GameObject.FindGameObjectWithTag("Player").transform; // Automatically get the player (make sure the player has the "Player" tag)
     }
 
     // Update is called once per frame
@@ -31,35 +26,30 @@ public class ShootTurret : MonoBehaviour
         }
     }
 
-
-
     public void Shooting()
     {
         fired = true;
+
+        // Calculate direction to player
+        Vector3 directionToPlayer = (player.position - FirePoint.position).normalized;
+
         RaycastHit hit;
-        //Player.LookAt(Player);
+        Debug.DrawRay(FirePoint.position, directionToPlayer * 100f, Color.red); // Optional: to visualize the ray in Scene view
 
-        if (Physics.Raycast(FirePoint.position, transform.TransformDirection(Vector3.forward), out hit, 100f))
+        // Shoot ray toward player
+        if (Physics.Raycast(FirePoint.position, directionToPlayer, out hit, 100f))
         {
-            Debug.DrawRay(FirePoint.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
+            // Check if we hit the player
+            PlayerController playerHealth = hit.transform.GetComponent<PlayerController>();
+
+            if (playerHealth != null)
+            {
+                playerHealth.Damage(-15); // Deal damage to player
+                //GameManager.instance.UpdateHealth(-15);
+            }
         }
 
-        PlayerController playerHealth = hit.transform.GetComponent<PlayerController>();
-        //Debug.Log("Bang");
-
-        if(playerHealth != null)
-        {
-            playerHealth.Damage(-15);
-            //GameManager.instance.UpdateHealth(-15);
-        }
-        else if (playerHealth == null)
-        {
-            fired = true;
-            //Debug.Log("Nothing");
-        }
         StartCoroutine(shootCooldown());
-
-
     }
 
     IEnumerator shootCooldown()
@@ -67,6 +57,5 @@ public class ShootTurret : MonoBehaviour
         yield return new WaitForSeconds(fireCooldown);
         fired = false;
         yield break;
-
     }
 }
