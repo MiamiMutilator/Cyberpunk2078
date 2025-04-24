@@ -5,6 +5,7 @@ public class EnemyController : MonoBehaviour
 {
     public int maxHealth = 1;
     int health;
+    public GameObject itemPrefab; //lucas added this for item model
 
     public bool isDead = false;
 
@@ -50,13 +51,15 @@ public class EnemyController : MonoBehaviour
     {
         if (Random.Range(0, 10) >= 0)
         {
-            Vector3 enemyLocation = gameObject.transform.position;
+            Vector3 enemyLocation = gameObject.transform.position + Vector3.up * 1f;
             //GameObject item = Instantiate(Enemy, enemyLocation)
 
-            GameObject sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+            GameObject item = Instantiate(itemPrefab, enemyLocation, Quaternion.identity);
+            
+            /*GameObject sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
             sphere.transform.position = enemyLocation;
             sphere.GetComponent<Collider>().isTrigger = true;
-            sphere.AddComponent<ItemPickup>();
+            sphere.AddComponent<ItemPickup>();*/
         }      
     }
 }
