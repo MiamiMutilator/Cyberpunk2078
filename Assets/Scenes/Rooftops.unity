@@ -1487,6 +1487,30 @@ PrefabInstance:
       propertyPath: playerCenter
       value: 
       objectReference: {fileID: 1366536819}
+    - target: {fileID: 2058911329262458802, guid: 9f196dc3b5180f44fa15d0c03123d280, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2058911329262458802, guid: 9f196dc3b5180f44fa15d0c03123d280, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.73333335
+      objectReference: {fileID: 0}
+    - target: {fileID: 2058911329262458802, guid: 9f196dc3b5180f44fa15d0c03123d280, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 0.2784314
+      objectReference: {fileID: 0}
+    - target: {fileID: 3536771313035639924, guid: 9f196dc3b5180f44fa15d0c03123d280, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3536771313035639924, guid: 9f196dc3b5180f44fa15d0c03123d280, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.73333335
+      objectReference: {fileID: 0}
+    - target: {fileID: 3536771313035639924, guid: 9f196dc3b5180f44fa15d0c03123d280, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 0.2784314
+      objectReference: {fileID: 0}
     - target: {fileID: 3655134043341194661, guid: 9f196dc3b5180f44fa15d0c03123d280, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.943485
@@ -1542,6 +1566,26 @@ PrefabInstance:
     - target: {fileID: 4175529166415486751, guid: 9f196dc3b5180f44fa15d0c03123d280, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 5145523863113240757, guid: 9f196dc3b5180f44fa15d0c03123d280, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9667087
+      objectReference: {fileID: 0}
+    - target: {fileID: 5145523863113240757, guid: 9f196dc3b5180f44fa15d0c03123d280, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.000000062348086
+      objectReference: {fileID: 0}
+    - target: {fileID: 5145523863113240757, guid: 9f196dc3b5180f44fa15d0c03123d280, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.000000032748304
+      objectReference: {fileID: 0}
+    - target: {fileID: 5145523863113240757, guid: 9f196dc3b5180f44fa15d0c03123d280, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.25587952
+      objectReference: {fileID: 0}
+    - target: {fileID: 5145523863113240757, guid: 9f196dc3b5180f44fa15d0c03123d280, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 29.651
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
