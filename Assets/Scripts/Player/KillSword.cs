@@ -1,5 +1,7 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
+using System.Collections.Generic;
 
 
 public class KillSword : MonoBehaviour
@@ -8,6 +10,8 @@ public class KillSword : MonoBehaviour
     public bool attacked;
     public bool canAttack;
     private Collider SwordHitBox;
+    public ParticleSystem SwordSlashFX;
+    public ParticleSystem SwordSlashFX2;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -30,12 +34,14 @@ public class KillSword : MonoBehaviour
                 anim.SetTrigger("Attack1");
                 StartCoroutine(AttackCooldown());
                 StartCoroutine(AttackTransition());
+                SwordSlashFX.Play();
             }
             if (attacked == true && canAttack == true)
             {
                 anim.SetTrigger("Attack2");
                 StartCoroutine(AttackCooldown());
                 attacked = false;
+                SwordSlashFX2.Play();
             }
 
         }
