@@ -66,7 +66,7 @@ public class KillSword : MonoBehaviour
     {
         canAttack = false;
         SwordHitBox.enabled = true;
-        yield return new WaitForSeconds(0.4f);
+        yield return new WaitForSeconds(1.2f);
         canAttack = true;
         SwordHitBox.enabled = false;
         yield break;
