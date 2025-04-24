@@ -30,11 +30,11 @@ public class ShootTurret : MonoBehaviour
     {
         fired = true;
 
-        // Calculate direction to player
+        
         Vector3 directionToPlayer = (player.position - FirePoint.position).normalized;
 
         RaycastHit hit;
-        Debug.DrawRay(FirePoint.position, directionToPlayer * 100f, Color.red); // Optional: to visualize the ray in Scene view
+        Debug.DrawRay(FirePoint.position, directionToPlayer * 100f, Color.red); 
 
         // Shoot ray toward player
         if (Physics.Raycast(FirePoint.position, directionToPlayer, out hit, 100f))

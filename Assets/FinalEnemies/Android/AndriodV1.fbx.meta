@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 6920cdae13a8e45439d3d8f4d2fe9708
+guid: a64e7460c8b20864185503b0ac2f71f0
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -31,11 +31,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Final Turret Shoot
+      name: Roaming Fly
       takeName: Scene
       internalID: -623603649343465320
       firstFrame: 1
-      lastFrame: 11
+      lastFrame: 80
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

@@ -348,6 +348,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 1
+  itemPrefab: {fileID: 6185308100621379281, guid: e91eef8bfbb8eb041bc7c2d120954646, type: 3}
   isDead: 0
 --- !u!114 &4693357749287899935
 MonoBehaviour:
