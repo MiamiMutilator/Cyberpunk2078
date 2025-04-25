@@ -25,7 +25,7 @@ public class EnemyController : MonoBehaviour
         if (collision.gameObject.CompareTag("Sword"))
         {
             ChangeHealth(-1);
-            Debug.Log("collision");
+            //Debug.Log("collision");
         }
     }
 
@@ -42,7 +42,7 @@ public class EnemyController : MonoBehaviour
         if (GameManager.instance.IsItemLevel())
             DropItem();
 
-        Debug.Log("Kill function ran");
+        //Debug.Log("Kill function ran");
         isDead = true;
         Destroy(gameObject);
     }

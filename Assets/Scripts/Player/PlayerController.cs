@@ -399,6 +399,6 @@ public class PlayerController : MonoBehaviour
         else
             speed = baseSpeed;
 
-        Debug.Log(speed);
+        //Debug.Log(speed);
     }
 }

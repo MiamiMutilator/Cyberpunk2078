@@ -162,7 +162,7 @@ public class GameManager : MonoBehaviour
         //setup health
         health = maxHealth;
         UpdateHealthUI();
-        Debug.Log(health);
+        //Debug.Log(health);
     }
 
     void WinLossStart()
@@ -186,7 +186,7 @@ public class GameManager : MonoBehaviour
     public void CompleteLevel()
     {
         //sewer is level 1, alley is level 2, roof is level 3
-        Debug.Log(levelNumber);
+        //Debug.Log(levelNumber);
         switch (levelNumber)
         {
             case -1:
