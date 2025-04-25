@@ -62,6 +62,8 @@ public class PlayerController : MonoBehaviour
 
     public Slider healthSlider;
 
+    public ParticleSystem blinkFX;
+
     //animations
     private Animator animator;
 
@@ -241,6 +243,7 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator Blink()
     {
+        blinkFX.Play();
         MeshRenderer mesh = GetComponent<MeshRenderer>();
         RaycastHit hit;
         float adjustedDistance;

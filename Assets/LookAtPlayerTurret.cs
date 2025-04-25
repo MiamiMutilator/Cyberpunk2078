@@ -25,7 +25,10 @@ public class LookAtPlayerTurret : MonoBehaviour
 
     void LateUpdate()
     {
-        transform.LookAt(Player);
+        Vector3 targetPosition = Player.position;
+        targetPosition.y = transform.position.y;
+        transform.LookAt(targetPosition);
+        //transform.LookAt(Player);
         //Vector3 targetPos = Player.position;
         //targetPos.y = transform.position.y;
         //transform.LookAt(targetPos);

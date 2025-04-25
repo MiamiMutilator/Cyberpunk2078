@@ -32,5 +32,10 @@ public class MouseMine : MonoBehaviour
         Destroy(gameObject);
     }
 
+    public void explode()
+    {
+        Destroy(gameObject);
+    }    
+
     
 }
