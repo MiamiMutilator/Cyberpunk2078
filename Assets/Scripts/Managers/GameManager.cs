@@ -259,6 +259,11 @@ public class GameManager : MonoBehaviour
         return (sceneType == 2);
     }
 
+    public bool IsGameplayLevel()
+    {
+        return (sceneType == 3);
+    }
+
     public void WinGame()
     {
         SceneChanger.instance.ChangeScene(6);

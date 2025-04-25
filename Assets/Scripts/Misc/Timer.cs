@@ -8,7 +8,7 @@ public class Timer : MonoBehaviour
     public TMP_Text timerText;
     static float timer;
     public float timerLength = 60;
-    bool timerActive;
+    bool timerDisabled;
 
     private void Awake()
     {
@@ -19,19 +19,18 @@ public class Timer : MonoBehaviour
     {
         //if (timer <= 0) ResetTimer();   //uncomment if choosing to not reset timer on death
         ResetTimer();
-        timerActive = true;
     }
 
     void Update()
     {
-        if (!timerActive) return;
+        if (timerDisabled) return;
         timer -= Time.deltaTime;
         timerText.text = timer.ToString("F2");
 
         if (timer <= 0)
         {
             timer = 0;
-            timerActive = false;
+            timerDisabled = true;
             Scene currentScene = SceneManager.GetActiveScene();
             SceneManager.LoadScene(currentScene.name);
             // SceneChanger.instance.ChangeScene(7); //change to 2 once hub level is created
@@ -45,6 +44,11 @@ public class Timer : MonoBehaviour
 
     public void DisableTimer()
     {
-        timerActive = false;
+        timerDisabled = true;
+    }
+
+    public void ToggleTimer(bool status)
+    {
+        timerDisabled = status;
     }
 }
