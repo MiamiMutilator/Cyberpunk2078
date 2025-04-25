@@ -8,7 +8,7 @@ public class Timer : MonoBehaviour
     public TMP_Text timerText;
     static float timer;
     public float timerLength = 60;
-    bool timerDisabled;
+    static bool timerDisabled;
     Color lightBlue = new Color(0.42f, 0.89f, 1f);
 
     private void Awake()
@@ -41,6 +41,8 @@ public class Timer : MonoBehaviour
     public void ResetTimer()
     {
         timer = timerLength;
+        timerText.text = timer.ToString("F2");
+        ToggleTimer(timerDisabled);
     }
 
     public void DisableTimer()
