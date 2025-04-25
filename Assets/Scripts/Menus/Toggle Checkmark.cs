@@ -7,7 +7,7 @@ public class ToggleCheckmark : MonoBehaviour
     public Image checkmarkImage; // Reference to the checkmark Image
     public Image uiImage; //UI Indicator for Cheat
     private bool isChecked = false; // Keeps track of whether the checkmark is enabled
-    public bool jumpCheck, dashCheck, invinCheck, speedCheck;
+    public bool jumpCheck, dashCheck, invinCheck, speedCheck, timerCheck;
 
     void Start()
     {
@@ -26,6 +26,10 @@ public class ToggleCheckmark : MonoBehaviour
         else if (speedCheck)
         {
             if (CheatMenu.instance.GetSpeedCheatStatus()) ToggleCheckmarkVisibility();
+        }
+        else if (timerCheck)
+        {
+            if (CheatMenu.instance.GetTimerCheatStatus()) ToggleCheckmarkVisibility();
         }
     }
 
