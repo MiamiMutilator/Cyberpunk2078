@@ -29,7 +29,7 @@ public class ToggleCheckmark : MonoBehaviour
         }
         else if (timerCheck)
         {
-            if (CheatMenu.instance.GetTimerCheatStatus()) ToggleCheckmarkVisibility();
+            if (CheatMenu.instance.GetTimerCheatStatus()) ToggleCheckmarkVisibility(false);
         }
     }
 
@@ -40,5 +40,12 @@ public class ToggleCheckmark : MonoBehaviour
         checkmarkImage.gameObject.SetActive(isChecked); // Enable or disable the checkmark
         uiImage.gameObject.SetActive(isChecked); //Enable or disable the UI indicator for Cheat
     }
-    
+
+    public void ToggleCheckmarkVisibility(bool hasUI)
+    {
+        isChecked = !isChecked; // Toggle the state
+        checkmarkImage.gameObject.SetActive(isChecked); // Enable or disable the checkmark
+        if (hasUI) uiImage.gameObject.SetActive(isChecked); //Enable or disable the UI indicator for Cheat
+    }
+
 }

@@ -13,7 +13,6 @@ public class CheatUIStartCheck : MonoBehaviour
             if (CheatMenu.instance.GetDashCheatStatus()) dashUI.gameObject.SetActive(true);
             if (CheatMenu.instance.GetSpeedCheatStatus()) invinUI.gameObject.SetActive(true);
             if (CheatMenu.instance.GetSpeedCheatStatus()) speedUI.gameObject.SetActive(true);
-            if (CheatMenu.instance.GetTimerCheatStatus()) timerUI.gameObject.SetActive(true);
         }
         
         
