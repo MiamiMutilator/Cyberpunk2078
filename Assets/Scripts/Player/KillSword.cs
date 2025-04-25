@@ -12,6 +12,10 @@ public class KillSword : MonoBehaviour
     private Collider SwordHitBox;
     public ParticleSystem SwordSlashFX;
     public ParticleSystem SwordSlashFX2;
+    public ParticleSystem SparkFX;
+    public AudioClip EnemyHit;
+    AudioSource audioSource;
+
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -22,6 +26,8 @@ public class KillSword : MonoBehaviour
         anim = GetComponentInParent<Animator>();
         attacked = false;
         canAttack = true;
+        audioSource = GetComponent<AudioSource>();
+
     }
 
     // Update is called once per frame
@@ -35,6 +41,7 @@ public class KillSword : MonoBehaviour
                 StartCoroutine(AttackCooldown());
                 StartCoroutine(AttackTransition());
                 SwordSlashFX.Play();
+                audioSource.Play();
             }
             if (attacked == true && canAttack == true)
             {
@@ -42,6 +49,7 @@ public class KillSword : MonoBehaviour
                 StartCoroutine(AttackCooldown());
                 attacked = false;
                 SwordSlashFX2.Play();
+                audioSource.Play();
             }
 
         }
@@ -51,6 +59,9 @@ public class KillSword : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
+            SparkFX.Play();
+            audioSource.PlayOneShot(EnemyHit);
+            Debug.Log("Hit");
             GetComponent<EnemyController>().Kill();
         }
     }
@@ -58,7 +69,7 @@ public class KillSword : MonoBehaviour
     private IEnumerator AttackTransition()
     {
         attacked = true;
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(1.2f);
         attacked = false;
         yield break;
     }
@@ -66,7 +77,7 @@ public class KillSword : MonoBehaviour
     {
         canAttack = false;
         SwordHitBox.enabled = true;
-        yield return new WaitForSeconds(1.2f);
+        yield return new WaitForSeconds(0.8f);
         canAttack = true;
         SwordHitBox.enabled = false;
         yield break;

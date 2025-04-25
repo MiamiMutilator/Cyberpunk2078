@@ -17,6 +17,8 @@ public class ShootTurret : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").transform; // Automatically get the player (make sure the player has the "Player" tag)
     }
 
+    
+
     // Update is called once per frame
     void Update()
     {

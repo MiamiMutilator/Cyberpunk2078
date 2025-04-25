@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class EnemyRangeTurret : MonoBehaviour
 {
@@ -7,6 +8,12 @@ public class EnemyRangeTurret : MonoBehaviour
     //private LookAtPlayerInstant lookScript;
 
     private Animator anim;
+    private AudioSource audioSource;
+    public AudioClip BeginFilm;
+    public AudioClip EndFilm;
+
+
+
 
     //public Transform Player;
 
@@ -17,6 +24,7 @@ public class EnemyRangeTurret : MonoBehaviour
         shootScript = transform.parent.Find("Armature").GetComponent<ShootTurret>();
         anim = GetComponentInParent<Animator>();
         anim.SetBool("Idle", true);
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -37,6 +45,8 @@ public class EnemyRangeTurret : MonoBehaviour
             shootScript.enabled = enabled;
             anim.SetBool("Shoot", true);
             anim.SetBool("Idle", false);
+            audioSource.PlayOneShot(BeginFilm);
+            StartCoroutine("WaitForSound");
             //Vector3 targetPos = Player.position;
             //transform.LookAt(targetPos);
             //lookScript.GetComponent<LookAtPlayerInstant>().Player.LookAt(Player);
@@ -47,10 +57,19 @@ public class EnemyRangeTurret : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            audioSource.Stop();
+            audioSource.PlayOneShot(EndFilm);
             //GetComponent<Shoot>().enabled = false;
             shootScript.enabled = false;
             anim.SetBool("Shoot", false);
             anim.SetBool("Idle", true);
         }
+    }
+
+    IEnumerator WaitForSound()
+    {
+        yield return new WaitForSeconds(2.5f);
+        audioSource.Play();
+        yield break;
     }
 }

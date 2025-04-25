@@ -6975,6 +6975,22 @@ PrefabInstance:
       propertyPath: itemPrefab
       value: 
       objectReference: {fileID: 6185308100621379281, guid: e91eef8bfbb8eb041bc7c2d120954646, type: 3}
+    - target: {fileID: 5168905876653829301, guid: d5bb3c2403259d741907ead2685a8ff6, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5168905876653829301, guid: d5bb3c2403259d741907ead2685a8ff6, type: 3}
+      propertyPath: m_Resource
+      value: 
+      objectReference: {fileID: 8300000, guid: 3c92de995fdb57a4e881dca73183fdfc, type: 3}
+    - target: {fileID: 5168905876653829301, guid: d5bb3c2403259d741907ead2685a8ff6, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 3c92de995fdb57a4e881dca73183fdfc, type: 3}
+    - target: {fileID: 5168905876653829301, guid: d5bb3c2403259d741907ead2685a8ff6, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7071786596658431201, guid: d5bb3c2403259d741907ead2685a8ff6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.0481606

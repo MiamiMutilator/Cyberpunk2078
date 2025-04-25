@@ -8,6 +8,9 @@ public class EnemyRangeRoamer : MonoBehaviour
 
     private Animator anim;
 
+    private AudioSource audioSource;
+
+
     //public Transform Player;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -16,6 +19,8 @@ public class EnemyRangeRoamer : MonoBehaviour
         //lookScript = GetComponent<LookAtPlayerInstant>();
         shootScript = GetComponentInParent<ShootTurret>();
         anim = GetComponentInParent<Animator>();
+        audioSource = GetComponent<AudioSource>();
+
     }
 
     // Update is called once per frame
@@ -34,6 +39,7 @@ public class EnemyRangeRoamer : MonoBehaviour
         {
             //GetComponent<Shoot>().enabled = true;
             shootScript.enabled = enabled;
+            audioSource.Play();
         }
     }
 

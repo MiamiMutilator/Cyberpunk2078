@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.AI;
+using System.Collections;
 
 public class EnemyRangeMine : MonoBehaviour
 {
@@ -7,6 +8,10 @@ public class EnemyRangeMine : MonoBehaviour
     private NavMeshAgent enemy;
     private bool followingPlayer = false;
     private Animator anim;
+    private AudioSource audioSource;
+
+
+    [SerializeField] public MouseMine triggerExplosion;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -14,7 +19,9 @@ public class EnemyRangeMine : MonoBehaviour
         enemy = GetComponentInParent<NavMeshAgent>();
         followingPlayer = false;
         anim = GetComponentInParent<Animator>();
+        audioSource = GetComponent<AudioSource>();
 
+        //triggerExplosion = transform.parent.GetComponentInChildren<MouseMine>();
     }
 
     // Update is called once per frame
@@ -25,6 +32,7 @@ public class EnemyRangeMine : MonoBehaviour
             enemy.destination = player.position;
             anim.SetBool("MouseIdle", false);
             anim.SetBool("MouseWalk", true);
+            
 
 
         }
@@ -47,7 +55,18 @@ public class EnemyRangeMine : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             followingPlayer = true;
+            StartCoroutine("WaitForExplosion");
+            audioSource.Play();
+
         }
+    }
+
+    IEnumerator WaitForExplosion()
+    {
+        yield return new WaitForSeconds(3);
+        triggerExplosion.explode();
+        yield break;
+
     }
 
     

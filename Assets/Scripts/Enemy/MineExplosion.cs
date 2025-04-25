@@ -7,9 +7,11 @@ public class MineExplosion : MonoBehaviour
     public bool exploded;
     public GameObject explosionEffect;
     private Animator anim;
+    private AudioSource audioSource;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         anim = GetComponent<Animator>();
         anim.SetBool("MouseIdle", true);
         exploded = false;
@@ -20,6 +22,7 @@ public class MineExplosion : MonoBehaviour
     {
         if (Mine == null && exploded == false)
         {
+            audioSource.Play();
             exploded = true;
             explosionEffect.SetActive(true);
             StartCoroutine(Wait());
@@ -32,7 +35,8 @@ public class MineExplosion : MonoBehaviour
 
     IEnumerator Wait()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.8f);
+
         Destroy(gameObject);
         yield break;
     }
