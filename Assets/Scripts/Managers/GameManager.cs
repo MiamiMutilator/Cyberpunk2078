@@ -40,6 +40,7 @@ public class GameManager : MonoBehaviour
         
         SceneCheck();
         StartScene();
+        //Debug.Log("Game Manager Started");
 
         Physics.gravity = new Vector3(0, -gravity, 0);
     }
