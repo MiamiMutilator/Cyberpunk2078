@@ -24,6 +24,8 @@ public class KillSword : MonoBehaviour
         SwordHitBox = GetComponent<Collider>();
         SwordHitBox.enabled = false;
         anim = GetComponentInParent<Animator>();
+        if (anim == null) 
+            Debug.LogError("Animator not found!");
         attacked = false;
         canAttack = true;
         audioSource = GetComponent<AudioSource>();
