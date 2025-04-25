@@ -31527,6 +31527,12 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 2107797206}
+    - target: {fileID: 508076426685190465, guid: cf84f56222bcb004099eb04df6588b0c, type: 3}
+      propertyPath: m_text
+      value: "Platform from rooftop to rooftop while fighting off enemies blocking
+        your way. \n\nCollect all 8 items to exit through the door on the top of
+        the last building. It's a long way down... don't fall off!"
+      objectReference: {fileID: 0}
     - target: {fileID: 569071143123871753, guid: cf84f56222bcb004099eb04df6588b0c, type: 3}
       propertyPath: m_Name
       value: Canvas
