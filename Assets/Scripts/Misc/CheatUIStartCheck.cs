@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class CheatUIStartCheck : MonoBehaviour
 {
-    public Image jumpUI, dashUI, invinUI, speedUI;
+    public Image jumpUI, dashUI, invinUI, speedUI, timerUI;
 
     private void Start()
     {
@@ -13,6 +13,7 @@ public class CheatUIStartCheck : MonoBehaviour
             if (CheatMenu.instance.GetDashCheatStatus()) dashUI.gameObject.SetActive(true);
             if (CheatMenu.instance.GetSpeedCheatStatus()) invinUI.gameObject.SetActive(true);
             if (CheatMenu.instance.GetSpeedCheatStatus()) speedUI.gameObject.SetActive(true);
+            if (CheatMenu.instance.GetTimerCheatStatus()) timerUI.gameObject.SetActive(true);
         }
         
         

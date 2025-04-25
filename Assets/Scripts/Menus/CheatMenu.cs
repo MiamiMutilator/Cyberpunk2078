@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class CheatMenu : MonoBehaviour
 {
-    static bool infJump, infDash, invincible, doubleSpeed;
+    static bool infJump, infDash, invincible, doubleSpeed, timerDisabled;
     public static CheatMenu instance;
     public GameObject player;
 
@@ -40,6 +40,17 @@ public class CheatMenu : MonoBehaviour
         }
     }
 
+    [ContextMenu("Toggle Timer Cheat")]
+    public void ToggleTimerCheat()
+    {
+        timerDisabled = !timerDisabled;
+
+        if (GameManager.instance.IsGameplayLevel())
+        {
+            Timer.instance.ToggleTimer(timerDisabled);
+        }
+    }
+
     public bool GetJumpCheatStatus()
     {
         return infJump;
@@ -58,5 +69,10 @@ public class CheatMenu : MonoBehaviour
     public bool GetSpeedCheatStatus()
     {
         return doubleSpeed;
+    }
+    
+    public bool GetTimerCheatStatus()
+    {
+        return timerDisabled;
     }
 }
