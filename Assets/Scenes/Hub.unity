@@ -18462,6 +18462,7 @@ MonoBehaviour:
   dashCheck: 0
   invinCheck: 0
   speedCheck: 0
+  timerCheck: 0
 --- !u!114 &304278254
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20788,6 +20789,7 @@ MonoBehaviour:
   dashCheck: 0
   invinCheck: 0
   speedCheck: 0
+  timerCheck: 1
 --- !u!114 &466280326
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20847,7 +20849,7 @@ MonoBehaviour:
       - m_Target: {fileID: 466280325}
         m_TargetAssemblyTypeName: ToggleCheckmark, Assembly-CSharp
         m_MethodName: ToggleCheckmarkVisibility
-        m_Mode: 1
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -37252,6 +37254,7 @@ MonoBehaviour:
   dashCheck: 1
   invinCheck: 0
   speedCheck: 0
+  timerCheck: 0
 --- !u!114 &904040445
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -55975,6 +55978,7 @@ MonoBehaviour:
   dashCheck: 0
   invinCheck: 0
   speedCheck: 1
+  timerCheck: 0
 --- !u!114 &1469581022
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -71750,6 +71754,7 @@ MonoBehaviour:
   dashCheck: 0
   invinCheck: 1
   speedCheck: 0
+  timerCheck: 0
 --- !u!114 &1982529785
 MonoBehaviour:
   m_ObjectHideFlags: 0
