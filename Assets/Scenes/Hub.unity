@@ -12282,6 +12282,11 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!1 &165728936 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2224754330394082839, guid: 175ff6a079938724994da68b6a623cb2, type: 3}
+  m_PrefabInstance: {fileID: 215456608}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &182526887 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3867786037106416418, guid: 3edb30e0307297841998cd5c692c6dfb, type: 3}
@@ -51818,7 +51823,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 501825bc2e6560545b39238740eba8a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 165728936}
 --- !u!1 &1269797040 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8393240195117883959, guid: bcfdc6d5871f2624fbb1740bf0a971ac, type: 3}
